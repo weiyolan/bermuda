@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import client from '../../lib/sanity'
 
 export default function Home() {
   return (
