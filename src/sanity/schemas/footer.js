@@ -45,24 +45,35 @@ export default defineType({
       name: "list4",
       title: "Legal",
       group: "group4",
-      type: "object",
-      options: { collapsible: true, collapsed: true },
-      fields: [
-        defineField({
-          name: "title",
-          title: "Title",
-          type: "localeString",
+      type: "array",
+      of: [
+        { type:'object',
+          options: { collapsible: true, collapsed: true },
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "localeString",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "items",
+              title: "Items",
+              type: "array",
+              of: [{ type: "reference", to: [{ type: "legalDoc" }] }],
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: {title:'title'},
+            prepare(selection) {
+              const {title} = selection
+              return { title: title?.en };
+            },
+          },
           validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-          name: "items",
-          title: "Items",
-          type: "array",
-          of: [{ type: "reference", to:[{type:'legalDoc'}]}],
-          validation: (Rule) => Rule.required(),
-        }),
+        },
       ],
-      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

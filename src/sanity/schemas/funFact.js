@@ -1,7 +1,6 @@
 import { defineType, defineField } from "sanity";
 // import { supportedLanguages } from "./supportedLanguages";
 
-
 export default defineType({
   name: "funFact",
   title: "Fun Fact",
@@ -37,7 +36,11 @@ export default defineType({
       name: "url",
       title: "Source URL",
       type: "url",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().uri({
+          allowRelative: true,
+          scheme: ["http", "https", "mailto", "tel"],
+        }),
     }),
   ],
 });

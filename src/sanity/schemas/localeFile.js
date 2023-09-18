@@ -18,6 +18,7 @@ import { supportedLanguages } from './supportedLanguages'
 export default defineType({
   title: 'Localized File',
   name: 'localeFile',
+  description: 'Wait untill uploading is completed before publishing.',
   type: 'object',
   options: { collapsible: true, collapsed:true }, 
   fieldsets: [

@@ -27,7 +27,11 @@ export default defineType({
       name: "url",
       title: "Source URL",
       type: "string",
-      validation: (Rule) => Rule.required().uri({allowRelative:true}),
+      validation: (Rule) =>
+        Rule.required().uri({
+          allowRelative: true,
+          scheme: ["http", "https", "mailto", "tel"],
+        }),
     }),
   ],
   preview: {
