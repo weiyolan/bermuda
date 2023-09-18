@@ -86,37 +86,22 @@ const contactList = {
     {
       text: "contact@miloweiler.com",
       ext: true,
-      link: "mailto:contact@miloweiler.com?subject=Photography%20Project&body=Hi%20Milo%2C%0A%0AI%20have%20a%20project%20for%20you.%0ACould%20we%20talk%20about%20this%20any%20time%20soon%3F%0A%0AThanks%20in%20advance%2C%0A%0A",
+      link: "mailto:contact@bermuda-events.be?subject=Events%20Project&body=Hi%20Robin%2C%0A%0AI%20have%20a%20project%20for%20you.%0ACould%20we%20talk%20about%20this%20any%20time%20soon%3F%0A%0AThanks%20in%20advance%2C%0A%0A",
     },
     // { text: 'Whatsapp', ext: true, link: 'https://wa.me/32471124525?text=Hi+Yolan%2C+%0D%0AI+got+your+WhatsApp+from+your+website+ywdesign.co.+Are+you+free+to+talk+any+time+soon+about+a+project+I+have+in+mind%3F+%0D%0AThanks%2C%0D%0A' },
   ],
 };
 
-const financialInfo = {
+const signature = {
   en: [
     "2023 Bermuda Events, Inc. All rights reserved.",
-    // 'VAT: BE0794.586.584',
-    // 'legal address: Hof Savelkoul 40, 2640 Mortsel, Antwerp, Belgium',
-    // 'tel: +33638565302',
-    // 'email: contact@ywdesign.co',
   ],
   fr: [
     "2023 Bermuda Events, Inc. Tous droits réservés.",
-    // 'TVA: BE0794.586.584',
-    // 'adresse juridique: Hof Savelkoul 40, 2640 Mortsel, Antwerp, Belgique',
-    // 'tel: +33638565302',
-    // 'email: contact@ywdesign.co',
   ],
 };
 
-export default function Footer({
-  style,
-  className,
-  noMotion,
-  noMargin,
-  setFooterHeight,
-  setFooterNormalHeight,
-}) {
+export default function Footer({ style, className, noMotion, noMargin, setFooterHeight, setFooterNormalHeight}) {
   // let { width, scrolled, locale } = useAppContext();
   // let { mobile } = usePageContext();
   let mobile = false;
@@ -197,7 +182,7 @@ export default function Footer({
             role="presentation"
             className="inline-flex flex-wrap justify-center"
           >
-            {financialInfo[locale].map((val, i) => {
+            {signature[locale].map((val, i) => {
               return (
                 <li
                   role=""
