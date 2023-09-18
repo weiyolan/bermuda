@@ -7,7 +7,7 @@ import React, { useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 // import { usePageContext } from '@/utils/pageContext';
-import useLayoutEffect from "@utils/useIsomorphicLayoutEffect";
+// import useLayoutEffect from "@utils/useIsomorphicLayoutEffect";
 // import { useAppContext } from '@/utils/appContext';
 import Link from "next/link";
 import Section from "@/atoms/Section";
