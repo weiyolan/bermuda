@@ -20,7 +20,7 @@ export default defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
-      name: 'image', title: 'Image', type: 'altImage',
+      name: 'altImage', title: 'Image', type: 'altImage',
       validation: Rule => Rule.required()
     }),
   ],

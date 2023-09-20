@@ -13,7 +13,7 @@ import LayoutSplit from "@/atoms/LayoutSplit";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Form() {
+export default function Form({title}) {
   const locale = useCurrentLocale(i18nConfig);
   let [success, setSuccess] = useState(false);
   // const { locale } = useAppContext();
@@ -26,7 +26,7 @@ export default function Form() {
   let [message, setMessage] = useState("");
   let [honey, setHoney] = useState("");
   // const { width } = useAppContext()
-  let width = window.innerWidth;
+  // let width = window.innerWidth;
 
   let ctx = useRef();
 
@@ -51,7 +51,7 @@ export default function Form() {
       });
     });
     return () => ctx.current.revert();
-  }, [width]);
+  }, [ctx]);
 
   function encode(data) {
     return Object.keys(data)
@@ -109,8 +109,8 @@ export default function Form() {
   }
 
   return (
-    <Section>
-      <H2 text={"Get Your Experience"} />
+    <Section id='form' className={''}>
+      <H2 text={title} />
       <form
         onSubmit={handleSubmit}
         name="ContactForm"

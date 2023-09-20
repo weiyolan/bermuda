@@ -4,6 +4,8 @@ import LayoutSplit from "@/atoms/LayoutSplit";
 import Section from "@/atoms/Section";
 import Image from "next/image";
 import picture from "../../public/eventAbout.jpg";
+import useLocale from "@/utils/useLocale";
+import { currentLocale } from "next-i18n-router";
 
 let content = {
   text: {
@@ -11,26 +13,28 @@ let content = {
     nl: "hey",
   },
 };
-let locale = "en";
 
-export default function AboutSection() {
+// const locale = currentLocale();
+
+export default function AboutSection({ alt, imgUrl, text, title, button }) {
+  let locale = currentLocale();
+  // let locale = useLocale();
+
   return (
     <Section id={"about"}>
       {/* <H2 text='About' className={'text-left'} /> */}
       <LayoutSplit right className={""}>
-        <Image
-          alt="Picture of a beautiful room with dining tables and animation"
-          className="w-full shadow-lg rounded-xl"
-          src={picture}
-        />
-        <div className="flex flex-col justify-center h-full w-fit gap-2">
-          <H2 text="About" className={"text-left mb-2 sm:mb-2"} />
-          <p className="font-raj first-letter:text-3xl max-w-prose font-medium">
-            {content.text[locale]}
+        <div className="h-96 w-full rounded-xl select-none overflow-hidden relative shadow-lg">
+          <Image alt={alt} className="object-cover" src={imgUrl} fill sizes='50vw' />
+        </div>
+        <div className="flex h-full w-fit flex-col justify-center gap-4 sm:gap-8">
+          <H2 text={title} className={"mb-0 sm:mb-0 text-left "} />
+          <p className="max-w-prose font-raj font-medium text-lg first-letter:text-3xl">
+            {text}
           </p>
           <Button
-            text={"Learn More"}
-            to={"/contact#facts"}
+            text={button.text[locale]}
+            to={button.url}
             className={""}
           ></Button>
         </div>

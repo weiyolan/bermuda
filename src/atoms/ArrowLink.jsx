@@ -10,6 +10,7 @@ const ArrowLink = ({
   inherit,
   inText,
   tabIndex,
+  title,
   className,
   containerClass,
 }) => {
@@ -24,6 +25,7 @@ const ArrowLink = ({
         containerClass && containerClass
       }  `}
       href={to}
+      title={title}
       rel={ext ? "noopener noreferrer" : undefined}
       target={ext ? "_blank" : undefined}
     >

@@ -20,6 +20,10 @@ import hpValues from "./hpValues";
 import card from "./card";
 import hpCTA from "./hpCTA";
 import hpAbout from "./hpAbout";
+import hpHero from "./hpHero";
+import hpNetwork from "./hpNetwork";
+import cpForm from "./cpForm";
+import linkDoc from "./linkDoc";
 
 export const schemaTypes = [
   trustedByLogo,
@@ -32,9 +36,11 @@ export const schemaTypes = [
   localeBlockContent,
   cpDetails,
   cpTrustedBy,
+  cpForm,
   cpNumbers,
   member,
   link,
+  linkDoc,
   footerList,
   footer,
   navigationBar,
@@ -43,5 +49,7 @@ export const schemaTypes = [
   hpValues,
   hpCTA,
   hpAbout,
-  card
+  hpHero,
+  hpNetwork,
+  card,
 ];

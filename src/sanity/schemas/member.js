@@ -1,17 +1,19 @@
 import { defineType, defineField } from "sanity";
 // import { supportedLanguages } from "./supportedLanguages";
-
+import {TriangleOutlineIcon} from "@sanity/icons";
+import {UsersIcon} from '@sanity/icons'
 
 export default defineType({
-  title: "Bermuda Member",
+  title: "Network Members",
   name: "member",
   type: "document",
+  icon: UsersIcon,
   options: { collapsible: true, collapsed: true },
   preview: {
     select: {
       name: 'name',
       func: 'func',
-      media: 'image',
+      media: 'altImage',
     },
 
     prepare(selection) {
@@ -40,7 +42,7 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "image",
+      name: "altImage",
       title: "Image",
       group:'image',
       type: "altImage",

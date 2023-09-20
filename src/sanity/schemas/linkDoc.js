@@ -3,8 +3,8 @@ import { defineType, defineField } from "sanity";
 import { LinkIcon } from "@sanity/icons";
 
 export default defineType({
-  name: "link",
-  title: "Link",
+  name: "linkDoc",
+  title: "Document",
   type: "object",
   options: { collapsible: true, collapsed: true },
   icon: LinkIcon,
@@ -25,24 +25,22 @@ export default defineType({
     }),
     defineField({
       name: "url",
-      title: "Source URL",
-      type: "url",
+      title: "Document",
+      type: "reference",
+      to: [{ type: "legalDoc" }],
       validation: (Rule) =>
-        Rule.required().uri({
-          allowRelative: true,
-          scheme: ["http", "https", "mailto", "tel"],
-        }),
+        Rule.required()
     }),
   ],
   preview: {
     select: {
       text: "text",
-      url: "url",
+      // url: "url",
     },
     prepare(selection) {
       const { text } = selection;
       // return { title: text?.en ? `${text?.en} - url: ${url}` : "loading.." };
-      return { title: text?.en ? `${text?.en}` : "loading.." };
+      return { title: text?.en  };
     },
   },
 });

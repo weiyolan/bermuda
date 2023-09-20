@@ -3,8 +3,8 @@ import { BlockElementIcon } from "@sanity/icons";
 import { supportedLanguages } from "../supportedLanguages";
 
 export default defineType({
-  name: "hpAbout",
-  title: "About Section",
+  name: "hpNetwork",
+  title: "Bermuda Network",
   type: "document",
   icon: BlockElementIcon,
 
@@ -16,29 +16,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     // We envision a world where photography is not just a means of capturing a moment, but a way of experiencing life's beauty. Through our lens, we want to inspire people to see the world in a new light, appreciate the little things in life, and cherish the
-    defineField({
-      name: "text",
-      title: "Text",
-      type: "localeText",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "button",
-      title: "Button",
-      type: "link",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "altImage",
-      title: "Image",
-      type: "altImage",
-      validation: (Rule) => Rule.required(),
-    }),
+    
   ],
   preview: {
     prepare() {
       // const {date, completion} = selection
-      return { title: "About Us" };
+      return { title: "Bermuda Network" };
     },
   },
 });

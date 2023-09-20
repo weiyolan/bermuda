@@ -5,10 +5,10 @@ import { gsap } from "gsap/dist/gsap";
 import { Observer } from "gsap/dist/Observer";
 import Line from "@/atoms/Line";
 import { usePathname } from "next/navigation";
-import Logo from "./Logo";
+import Logo from "../atoms/Logo";
 import useLocale from "@/utils/useLocale";
-import LogoText from "./LogoText";
 import Button from "@/atoms/Button";
+import LogoText from "@/atoms/LogoText";
 // import { currentLocale } from 'next-i18n-router'
 
 gsap.registerPlugin(Observer);
@@ -19,7 +19,7 @@ let buttons = [
   { text: { en: "Contact", nl: "Contact" }, to: "/contact" },
 ];
 
-export default function Navigation() {
+export default function Navigation({ links, cta }) {
   // let { locale } = useAppContext()
   // let { darkMode } = usePageContext()
   let [hiding, setHiding] = useState(true); //removed bar onLoad and then animate in.
@@ -145,14 +145,18 @@ export default function Navigation() {
       </Link>
 
       <div
-        className={`navList relative inline-flex items-center gap-[60px] uppercase text-xl`}
+        className={`navList relative inline-flex items-center gap-[60px] text-xl uppercase`}
       >
-        {buttons.map((button) => (
-          <MyButton key={button.to} text={button.text[locale]} to={button.to} />
+        {links.map((button, i) => (
+          <MyButton
+            key={i}
+            text={button.text?.[locale]}
+            to={button.url}
+            ext={button.ext}
+          />
         ))}
-
         <Button
-          text="Ask an offer"
+          text={cta}
           to="contact/#form"
           className={
             " relative rounded-md bg-white fill-brown px-4 py-2 font-bold text-brown"
@@ -164,7 +168,7 @@ export default function Navigation() {
   );
 }
 
-function MyButton({ text, to, className }) {
+function MyButton({ text, to, className, ext }) {
   // let { darkMode } = usePageContext()
   let darkMode = true;
   const pathname = usePathname();
@@ -198,7 +202,7 @@ function MyButton({ text, to, className }) {
         duration: 0.2,
       });
     });
-  }, [hover,pathname]);
+  }, [hover, pathname]);
 
   return (
     <Link

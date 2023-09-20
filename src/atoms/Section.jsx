@@ -1,4 +1,4 @@
-export default function Section({ id, children, className, cardSection }) {
+export default function Section({ id, children, className, cardSection ,...props}) {
   // For now only normal section in use untill deleted
 
   // if (cardSection) {
@@ -15,6 +15,7 @@ export default function Section({ id, children, className, cardSection }) {
       className={`relative mx-auto w-full h-fit max-w-7xl px-4 mobm:px-6 sm:px-12 lg:px-0  mt-12 sm:mt-24 ${
         className && className
       }`}
+      {...props}
     >
       {children}
     </section>

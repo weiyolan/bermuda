@@ -1,25 +1,25 @@
 import Image from "next/image";
 import picture from "../../public/eventHero.jpg";
-import Logo from "./Logo";
-import LogoText from "./LogoText";
+import Logo from "../atoms/Logo";
+import LogoText from "@/atoms/LogoText";
 
-export default function Hero() {
+export default function Hero({alt, imgUrl}) {
   return (
     <div className="relative w-full select-none h-screen flex flex-col justify-center items-center">
       <div className="w-full h-screen absolute bg-lightbrown">
         <Image
-          src={picture}
+          src={imgUrl}
           priority
           className="object-cover object-top"
           fill
-          alt="Picture of a beautifully dressed table."
+          alt={alt}
         />
       </div>
 
-      <div className="w-10% h-10% absolute border-debug bg-white center-center" />
+      <div className="w-[20%] h-[20%] blur-[80px] absolute border-debug bg-white center-center -translate-y-[40%]" />
 
       <Logo color className={`relative w-36 h-36`} />
-      <LogoText color className={`relative mt-8 w-1/5`} />
+      <LogoText color className={`relative mt-8 w-1/3`} />
     </div>
   );
 }

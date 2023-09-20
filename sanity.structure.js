@@ -1,6 +1,5 @@
 // import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
-import { MasterDetailIcon } from "@sanity/icons";
-import { BlockElementIcon } from "@sanity/icons";
+import { BlockElementIcon, TriangleOutlineIcon , MasterDetailIcon} from "@sanity/icons";
 
 export const myStructure = (S, context) => {
   return S.list()
@@ -14,38 +13,35 @@ export const myStructure = (S, context) => {
             .title("Sections")
             .items([
               S.listItem()
+                .title("Hero Banner")
+                .icon(BlockElementIcon)
+                .child(S.document().schemaType("hpHero").documentId("hpHero")),
+              S.listItem()
                 .title("Bermuda Values")
                 .icon(BlockElementIcon)
                 .child(
-                  S.document()
-                    .schemaType("hpValues")
-                    .documentId("hpValues"),
+                  S.document().schemaType("hpValues").documentId("hpValues"),
                 ),
               S.listItem()
                 .title("CTA")
                 .icon(BlockElementIcon)
-                .child(
-                  S.document()
-                    .schemaType("hpCTA")
-                    .documentId("hpCTA"),
-                ),
+                .child(S.document().schemaType("hpCTA").documentId("hpCTA")),
               S.listItem()
                 .title("About")
                 .icon(BlockElementIcon)
                 .child(
-                  S.document()
-                    .schemaType("hpAbout")
-                    .documentId("hpAbout"),
+                  S.document().schemaType("hpAbout").documentId("hpAbout"),
                 ),
               S.listItem()
                 .title("Bermuda Network")
                 .icon(BlockElementIcon)
                 .child(
-                  S.documentList()
-                    .title("Network Members")
-                    .apiVersion("v2023-09-18")
-                    .schemaType("member")
-                    .filter('_type == "member"')
+                  S.document().schemaType("hpNetwork").documentId("hpNetwork"),
+                  // // // S.documentList()
+                  // // //   .title("Network Members")
+                  // // //   .apiVersion("v2023-09-18")
+                  // // //   .schemaType("member")
+                  // // //   .filter('_type == "member"')
                 ),
             ]),
         ),
@@ -70,14 +66,14 @@ export const myStructure = (S, context) => {
                     .schemaType("cpTrustedBy")
                     .documentId("cpTrustedBy"),
                 ),
-              // S.listItem()
-              //   .title("Contact Form")
-              //   .icon(BlockElementIcon)
-              //   .child(
-              //     S.document()
-              //       .schemaType("contactPageAOS")
-              //       .documentId("contactPageAOS"),
-              //   ),
+              S.listItem()
+                .title("Form")
+                .icon(BlockElementIcon)
+                .child(
+                  S.document()
+                    .schemaType("cpForm")
+                    .documentId("cpForm"),
+                ),
               S.listItem()
                 .title("Fun Facts")
                 .icon(BlockElementIcon)
@@ -113,12 +109,14 @@ export const myStructure = (S, context) => {
             "cpTrustedBy",
             // "contactPageAOS",
             "cpNumbers",
+            "cpForm",
             "nav",
             "footerContent",
-            "member",
-            'hpAbout',
+            "hpAbout",
             "hpCTA",
+            "hpHero",
             "hpValues",
+            "hpNetwork",
             // "legalDoc",
             // "contactPagePFS",
             // "mainPageXXX",

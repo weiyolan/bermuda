@@ -1,6 +1,6 @@
 import { defineType, defineField } from "sanity";
 // import { supportedLanguages } from "./supportedLanguages";
-import { InlineElementIcon } from "@sanity/icons";
+import { InlineElementIcon, LinkIcon } from "@sanity/icons";
 
 export default defineType({
   name: "footerContent",
@@ -45,34 +45,23 @@ export default defineType({
       name: "list4",
       title: "Legal",
       group: "group4",
-      type: "array",
-      of: [
-        { type:'object',
-          options: { collapsible: true, collapsed: true },
-          fields: [
-            defineField({
-              name: "title",
-              title: "Title",
-              type: "localeString",
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: "items",
-              title: "Items",
-              type: "array",
-              of: [{ type: "reference", to: [{ type: "legalDoc" }] }],
-              validation: (Rule) => Rule.required(),
-            }),
-          ],
-          preview: {
-            select: {title:'title'},
-            prepare(selection) {
-              const {title} = selection
-              return { title: title?.en };
-            },
-          },
+      options: { collapsible: true, collapsed: true },
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Title",
+          type: "localeString",
           validation: (Rule) => Rule.required(),
-        },
+        }),
+        defineField({
+          name: "items",
+          title: "Items",
+          type: "array",
+          validation: (Rule) => Rule.required(),
+          of: [{type:'linkDoc'},
+          ],
+        }),
       ],
     }),
   ],

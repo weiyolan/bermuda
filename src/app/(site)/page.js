@@ -1,38 +1,36 @@
-// import Image from 'next/image'
 
 import AboutSection from "@/components/AboutSection";
 import CTA from "@/components/CTA";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Network from "@/components/Network";
-// import client from "@/sanity/client";
+import { deleteUnusedAssets } from "@/sanity/deleteUnusedAsset";
 
-// export async function getData() {
-//   const projects = await client.fetch(
-//     `*[_type == "project"][]|order(date desc){title, cat, otherImages[]{_key,_type, asset->{url,metadata{dimensions}}, ...asset{_ref}}, mainImage{alt,image{asset->{url}, ...asset{_ref}}}, slug}`,
-//   );
-//   const sectionInfo = await client.fetch(
-//     `*[_type == "mainPageXXX" || _type == "mainPageYYY"]`,
-//   );
-//   // const sectionInfoMilo = await client.fetch(`*[]`)
-//   return {
-//     projects,
-//     sectionInfo,
-//   };
-// }
+import { getAboutContent, getCTA, getHero, getMembers, getNetwork, getValues } from "@/sanity/sanity-utils";
+import { currentLocale } from "next-i18n-router";
 
 export default async function Home() {
-  // const { projects } = await getData();
+  const locale = currentLocale();
+  const members = await getMembers();
+  const {title:networkTitle} = await getNetwork();
+  const {imgUrl:aboutImage,alt:aboutAlt,button:aboutButton,text:aboutText,title:aboutTitle} = await getAboutContent();
+  const {imgUrl:heroImage,alt:heroAlt} = await getHero();
+  const {title:CTAText} = await getCTA();
+  const {title:valueTitle, val1, val2, val3} = await getValues();
+  // console.log(members)  
   // console.log('test')
-  // console.log(result)
+  // console.log(val1)  
+
+  // const result = await deleteUnusedAssets();
+
 
   return (
     <div className="">
-      <Hero />
-      <Features />
-      <CTA />
-      <AboutSection />
-      <Network />
+      <Hero alt={heroAlt?.[locale]} imgUrl={heroImage}  />
+      <Features title={valueTitle?.[locale]} values={[val1,val2,val3]}/>
+      <CTA text={CTAText?.[locale]}/>
+      <AboutSection alt={aboutAlt?.[locale]} imgUrl={aboutImage} title={aboutTitle[locale]} text={aboutText[locale]} button={aboutButton}/>
+      <Network title={networkTitle} members={members}/>
       {/* <Image priority src='https://cdn.sanity.io/images/erjr84ua/production/4623cc87848ec9ad07a16c8ad12d5ec3ab07f5b4-3739x5608.jpg' alt='test' width='1000' height='600'/> */}
     </div>
   );
