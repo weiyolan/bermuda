@@ -9,8 +9,8 @@ import useGsap from '@/utils/useGsap';
  
 // import { currentLocale } from "next-i18n-router";
 let colors = [
-  "text-brownlight fill-brownlight",
   "text-browndark fill-browndark",
+  "text-brownlight fill-brownlight",
   "text-brown fill-brown",
 ];
 
@@ -37,16 +37,18 @@ export default function Features({ title, values }) {
   );
 }
 
-function Feature({ className, title, subTitle, text }) {
+function Feature({ className, title, subTitle, text, myKey }) {
   return (
     <div className={`flex flex-1 flex-col items-center gap-4 ${className}`}>
       <div>
         <p className="text-center font-raj text-xs font-semibold uppercase ">
           Get Lost In
         </p>
-        <h3 className="font-bel text-3xl">{title}</h3>
+        <h3 className="font-bel text-4xl  ">{title}</h3>
       </div>
-      <Personality className={`w-full`} />
+      {myKey===0?<Creativity className={` cursor-pointer  w-fit`} />:null}
+      {myKey===1?<Detail className={`cursor-pointer  w-fit`} />:null}
+      {myKey===2?<Personality className={` cursor-pointer  w-fit`} />:null}
       <p className="text-center font-raj font-medium">{subTitle}</p>
     </div>
   );
@@ -148,7 +150,7 @@ function Creativity({className}) {
 function Detail({className}) {
   
   return(
-    <svg width="177" height="177" viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className}  width="177" height="177" viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Frame 114">
 <path id="O" opacity="0.9" d="M82.4896 94.5104C85.809 97.8299 91.191 97.8299 94.5104 94.5104C97.8299 91.191 97.8299 85.809 94.5104 82.4896C91.191 79.1701 85.809 79.1701 82.4896 82.4896C79.1701 85.809 79.1701 91.191 82.4896 94.5104Z" fill="#A8947F"/>
 <path id="Vector" d="M58.448 58.448L28.9445 50.8648C31.7628 48.0382 35.5861 46.2326 39.7124 45.8309L22.8618 28.9804L28.8718 22.9704L45.7901 39.8887C46.1524 35.6887 47.9917 31.8094 50.8648 28.9445L58.448 58.448Z" fill="#A8947F"/>

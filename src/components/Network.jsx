@@ -139,7 +139,7 @@ function Member({ url, name, func, text, alt, print }) {
         ref={myText}
         className="absolute italic opacity-0 top-1/3 -translate-y-1/2  w-full text-center font-raj font-medium"
       >
-        "{text}"
+        {'"'}{text}{'"'}
       </p>
 
       <h3 className="font-bel text-xl font-semibold">{name}</h3>
