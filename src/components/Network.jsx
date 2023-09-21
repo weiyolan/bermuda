@@ -132,7 +132,7 @@ function Member({ url, name, func, text, alt, print }) {
           className="memberImage object-cover"
           // width={200}
           // height={200}
-          sizes="30vw"
+          sizes="25vw"
         />
       </div>
       <p

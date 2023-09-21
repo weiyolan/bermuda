@@ -152,7 +152,7 @@ export default function Footer({ style, className, lists, title }) {
           </div>
           <div className="mx-auto flex w-3/5 max-w-6xl flex-col items-center justify-between sm:flex-row sm:items-start">
             {/* {console.log(lists)} */}
-            {lists.map((list, i) => {
+            {lists?.map((list, i) => {
               return (
                 <Links
                   key={i}
@@ -172,7 +172,7 @@ export default function Footer({ style, className, lists, title }) {
             role="presentation"
             className="inline-flex flex-wrap justify-center"
           >
-            {signature[locale].map((val, i) => {
+            {signature[locale]?.map((val, i) => {
               return (
                 <li
                   role=""
@@ -255,14 +255,14 @@ function List({ list, mobile }) {
   const locale = currentLocale();
   return (
     <ul className="flex flex-wrap justify-center gap-x-2 font-bel sm:flex-col sm:flex-nowrap ">
-      {list.map((item, i) => (
+      {list?.map((item, i) => (
         <li
           key={i}
           className={` whitespace-nowrap text-sm font-extralight sm:text-sm `}
         >
           <Link
             className="border border-transparent duration-200 focus-within:scale-110 focus-within:border-b-white hover:border-b-white focus:outline-none  "
-            href={typeof item.url ==='string' ? item.url : (item.url?.[locale])}
+            href={typeof item.url ==='string' ? item?.url : (item?.url?.[locale])}
             title={typeof item.url ==='string'? `${item.text?.[locale]}`:`Download ${item.text?.[locale]}`}
             target={item.ext ? "_blank" : undefined}
             rel={item.ext ? "noopener noreferrer" : undefined}

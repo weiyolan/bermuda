@@ -13,6 +13,7 @@ import { currentLocale } from "next-i18n-router";
 import Footer from "@/components/Footer";
 import UpButton from "@/components/UpButton";
 import { getFooter, getNav } from "@/sanity/sanity-utils";
+import BackgroundLogo from "@/atoms/BackgroundLogo";
 
 const belleza = Belleza({
   subsets: ["latin"],
@@ -38,23 +39,23 @@ export default async function RootLayout({ children }) {
   const locale = currentLocale();
   const { links, cta } = await getNav();
   const { title, list1, list2, list3, list4 } = await getFooter();
-  // console.log(list4.items[0].url)
+  // console.log(list4.items[0].url.en)
   return (
     <html lang={locale}>
       <body
         //  bg-black
-        className={` bg-gradient-to-br from-white to-white2  text-black ${belleza.variable} ${rajdhani.variable} overflow-x-hidden`}
+        className={` bg-gradient-to-br from-white to-[#fff7ee]  text-black ${belleza.variable} ${rajdhani.variable} overflow-x-hidden`}
       >
         {/* <body className={inter.className}> */}
         <header>
-          <Navigation links={links} cta={cta?.[locale]}/>
+          <Navigation links={links} cta={cta?.[locale]} />
         </header>
-        <main className="flex flex-col gap-10">
+        <main className="relative flex flex-col gap-10">
           {/* <main className="flex flex-col gap-10"> */}
           {children}
         </main>
         <footer>
-          <Footer title={title?.[locale]} lists={[list1,list2,list3,list4]} />
+          <Footer title={title?.[locale]} lists={[list1, list2, list3, list4]} />
         </footer>
         <UpButton />
       </body>

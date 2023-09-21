@@ -24,6 +24,7 @@ export default function CTA({ text }) {
         id:'lineOpacity',
         ease: "none",
         delay:hovering?0:0.8,
+        overwrite:true,
       });
       gsap.to([".ctaLines"], {
         duration: 1,

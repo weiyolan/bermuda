@@ -39,11 +39,11 @@ export default function ContactDetails({ title, text, alt, imgUrl }) {
   // console.log(contactDetails.image)
   return (
     <Section>
-      <LayoutSplit right className={` mt-36`}>
+      <LayoutSplit right className={`mt-36 items-center`}>
         {/* <SanityImage move style={{ objectPosition: 'top' }} containerClass='w-[46vw] -mt-6 xs:mt-0 xs:w-2/5 min-h-[40vh] xs:min-h-0 xs:h-56 bottom-0 xs:top-14 right-0 xs:right-4 sm:top-0 sm:right-0 sm:relative sm:h-full sm:w-full contact-image0 opacity-0'
         priority absolute={false} fill image={contactDetails.image.image.asset} alt={contactDetails.image.alt[locale]} /> */}
 
-        <div className="h-full w-full overflow-hidden rounded-xl shadow-lg relative">
+        <div className="h-96 w-full my-auto overflow-hidden rounded-xl shadow-lg relative">
           <Image src={imgUrl} alt={alt} fill className="object-cover" />
         </div>
         <div

@@ -9,26 +9,29 @@ import Logo from "../atoms/Logo";
 import useLocale from "@/utils/useLocale";
 import Button from "@/atoms/Button";
 import LogoText from "@/atoms/LogoText";
+import LogoAnim from "@/atoms/LogoAnim";
 // import { currentLocale } from 'next-i18n-router'
+
+
 
 gsap.registerPlugin(Observer);
 
-let buttons = [
-  { text: { en: "Home", nl: "Home" }, to: "/" },
-  { text: { en: "About", nl: "Over ons" }, to: "/#about" },
-  { text: { en: "Contact", nl: "Contact" }, to: "/contact" },
-];
+
 
 export default function Navigation({ links, cta }) {
   // let { locale } = useAppContext()
   // let { darkMode } = usePageContext()
-  let [hiding, setHiding] = useState(true); //removed bar onLoad and then animate in.
+  let [hiding, setHiding] = useState(false); //removed bar onLoad and then animate in.
   let [big, setBig] = useState(true);
 
-  // const locale = currentLocale();
+  let [hovering, setHovering] = useState(false);
+  let [clicking, setClicking] = useState(false);
+  const myRef = useRef();
+
   let locale = useLocale();
 
-  const ctx = useRef(gsap.context(() => {}));
+  const ctx = useRef(gsap.context(() => { }));
+
 
   useEffect(() => {
     setHiding(false);
@@ -101,7 +104,7 @@ export default function Navigation({ links, cta }) {
         autoAlpha: () => (hiding ? 0 : 1),
         yPercent: () => (hiding ? -100 : 0),
         duration: 0.5,
-        padding: big ? 32 : "8 16",
+        padding: big ? '8 16' : "-4 8",
         transformOrigin: "50% 50%",
         ease: "expo.out",
         // backgroundColor: big?'#BD9159':'#BD9159AA',
@@ -118,34 +121,65 @@ export default function Navigation({ links, cta }) {
       gsap.to(".navLogoText", {
         autoAlpha: big ? 1 : 0,
         duration: 0.3,
+        display: big ? 'block' : 'none'  ,
         // ease: "elastic.out(1, 0.5)",
         ease: "expo.out",
         // delay: () => big ? 0 : 0,
       });
       gsap.to(".navList", {
-        gap: big ? 60 : 40,
-        fontSize: big ? "1.25rem" : "1.15rem",
+        gap: big ? 40 : 30,
+        fontSize: big ? "1.15rem" : "1rem",
         duration: 0.3,
         // ease: "elastic.out(1, 0.5)",
         ease: "expo.out",
         // delay: () => big ? 0 : 0,
       });
+      gsap.to(".navLogoLink", {
+        // gap: big ? 60 : 40,
+        // fontSize: big ? "1.25rem" : "1.15rem",
+        scale: hovering ? 1.05 : 1,
+        duration: 0.5,
+        // ease: "elastic.out(1, 0.5)",
+        ease: "elastic.out(1, 0.5)",
+        // delay: () => big ? 0 : 0,
+      });
+      gsap.to(myRef.current, {
+        duration: 0.5,
+        scale:  hovering ? (clicking ? 0.95 : 1.05) : 1 ,
+        transformOrigin: '50% 50%',
+        // ease: 'elastic.out(1, 0.5)',
+        ease: 'expo.out',
+      });
     });
-  }, [hiding, big]);
+  }, [hiding, big, hovering, clicking]);
+
+
 
   return (
     // <FadeDiv className='w-full relative'>
     // <FadeDiv style={{ transform: "translate3d(0, 0, 0)" }} className={`fixed w-full top-0 justify-center flex navBar  `} type={'leftRight'} amount={30}>
     <div
-      className={`navBar navBar fixed top-0  z-10 flex w-full justify-between bg-brown p-8`}
+      className={`navBar navBar fixed top-0 z-10 flex w-full justify-between text-base uppercase bg-brown p-4`}
     >
-      <Link href="/" className="flex w-fit gap-10">
-        <Logo className={"navLogo w-24"} />
-        <LogoText className={"navLogoText w-48"} />
+      <Link href="/"
+        ref={myRef}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => {
+          setHovering(false);
+          setClicking(false);
+        }}
+        onMouseDown={() => setClicking(true)}
+        onMouseUp={() => setClicking(false)}
+        // onFocus={() => setActive(true)}
+        // onBlur={() => setActive(false)}
+        tabIndex='0'
+        className="relative navLogoLink flex w-fit gap-6 h-fit">
+        <LogoAnim hovering={hovering} className={"fill-white relative navLogo w-20 h-fit"} />
+        <LogoText className={"relative navLogoText w-36"} />
       </Link>
 
       <div
-        className={`navList relative inline-flex items-center gap-[60px] text-xl uppercase`}
+        className={`navList relative inline-flex  items-center gap-[40px]  `}
       >
         {links.map((button, i) => (
           <MyButton
@@ -159,7 +193,7 @@ export default function Navigation({ links, cta }) {
           text={cta}
           to="contact/#form"
           className={
-            " relative rounded-md bg-white fill-brown px-4 py-2 font-bold text-brown"
+            " relative rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown"
           }
         />
       </div>
@@ -176,7 +210,7 @@ function MyButton({ text, to, className, ext }) {
   // let [selected, setSelected] = useState(false)
   let selected = to === pathname;
 
-  const ctx = useRef(gsap.context(() => {}));
+  const ctx = useRef(gsap.context(() => { }));
 
   useEffect(() => {
     // setLoaded(true)
@@ -190,6 +224,7 @@ function MyButton({ text, to, className, ext }) {
       gsap.to(`.navButton${text.slice(0, 3)}`, {
         scale: hover ? 1.1 : 1,
         duration: 0.2,
+        ease:'expo.out',
       });
       gsap.to(`.navLine${text.slice(0, 3)}`, {
         width: hover || selected ? "100%" : 0,
@@ -200,6 +235,7 @@ function MyButton({ text, to, className, ext }) {
               : "#000000"
             : "transparent",
         duration: 0.2,
+        ease:'expo.out',
       });
     });
   }, [hover, pathname]);
@@ -207,16 +243,11 @@ function MyButton({ text, to, className, ext }) {
   return (
     <Link
       onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => {
-        setHover(false);
-      }}
-      className={`relative  navButton${text.slice(
-        0,
-        3,
-      )} text-center  font-bel text-white `}
+      onMouseLeave={() => { setHover(false); }}
+      className={`relative navButton${text.slice(0, 3,)} text-center  font-bel text-white `}
       href={`${to}`}
-      // onClick={() => handleClick(to)}
-      // title={`Go to the ${text} page`}
+    // onClick={() => handleClick(to)}
+    // title={`Go to the ${text} page`}
     >
       <div className={`mx-auto w-fit ${className && className}`}>
         {text}
