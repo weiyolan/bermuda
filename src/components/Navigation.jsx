@@ -53,22 +53,38 @@ export default function Navigation({ links, cta }) {
   }
 
   useEffect(() => {
-    let observer = Observer.create({
+    let observer1 = Observer.create({
       target: window, // can be any element (selector text is fine)
       type: "scroll", // comma-delimited list of what to listen for ("wheel,touch,scroll,pointer")
       preventDefault: false,
       onStopDelay: 1.5,
-      tolerance: 150,
+      tolerance: 30,
       onDown: () => {
         hideBar();
       },
+      // onUp: () => {
+      //   showBar();
+      // },
+      lockAxis: true,
+    });
+
+    let observer2 = Observer.create({
+      target: window, // can be any element (selector text is fine)
+      type: "scroll", // comma-delimited list of what to listen for ("wheel,touch,scroll,pointer")
+      preventDefault: false,
+      onStopDelay: 1.5,
+      tolerance: 10,
+      // onDown: () => {
+      //   hideBar();
+      // },
       onUp: () => {
         showBar();
       },
       lockAxis: true,
     });
     return () => {
-      observer.disable();
+      observer1.disable();
+      observer2.disable();
     };
   }, [hiding]);
 
@@ -104,7 +120,7 @@ export default function Navigation({ links, cta }) {
         autoAlpha: () => (hiding ? 0 : 1),
         yPercent: () => (hiding ? -100 : 0),
         duration: 0.5,
-        padding: big ? '8 16' : "-4 8",
+        padding: big ? '8 16' : "0 16 0 0",
         transformOrigin: "50% 50%",
         ease: "expo.out",
         // backgroundColor: big?'#BD9159':'#BD9159AA',
@@ -159,7 +175,7 @@ export default function Navigation({ links, cta }) {
     // <FadeDiv className='w-full relative'>
     // <FadeDiv style={{ transform: "translate3d(0, 0, 0)" }} className={`fixed w-full top-0 justify-center flex navBar  `} type={'leftRight'} amount={30}>
     <div
-      className={`navBar navBar fixed top-0 z-10 flex w-full justify-between text-base uppercase bg-brown p-4`}
+      className={`navBar navBar fixed top-0 z-10 flex w-full justify-between text-base uppercase bg-brown p-4 px-8`}
     >
       <Link href="/"
         ref={myRef}

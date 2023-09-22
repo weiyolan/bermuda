@@ -12,17 +12,17 @@ export default async function Contact() {
   const locale = currentLocale();
 
   const { title: numberTitle, fact1, fact2, fact3 } = await getNumbers();
-  const {title:formTitle} = await getFormContent()
-  const {enabled, title:trustedTitle, partners} = await getTrusted();
-  const {title:detailsTitle,text:detailsText,alt,imgUrl} = await getDetails();
-  
+  const { title: formTitle } = await getFormContent()
+  const { enabled, title: trustedTitle, partners } = await getTrusted();
+  const { title: detailsTitle, text: detailsText, alt, imgUrl } = await getDetails();
+
   return (
     <div>
-        <BackgroundLogo />
-      <ContactDetails title={detailsTitle?.[locale]} text={detailsText?.[locale]} alt={alt} imgUrl={imgUrl}/>
+      <BackgroundLogo />
+      <ContactDetails title={detailsTitle?.[locale]} text={detailsText?.[locale]} alt={alt} imgUrl={imgUrl} />
       {enabled && <TrustedBy title={trustedTitle?.[locale]} partners={partners} />}
-      <Form title={formTitle?.[locale]}/>
-      <Numbers title={numberTitle?.[locale]} facts={[fact1,fact2,fact3]}/>
+      <Form title={formTitle?.[locale]} />
+      <Numbers title={numberTitle?.[locale]} facts={[fact1, fact2, fact3]} />
     </div>
   );
 }

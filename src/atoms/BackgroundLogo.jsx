@@ -47,7 +47,7 @@ export default function BackgroundLogo() {
   return (
     <div  ref={myRef}
       className="z-0 fixed w-[60vw] h-[60vw] top-1/3 right-0" >
-      <Logo id={'backgroundLogo'} className={`w-full h-fit relative fill-brown/5`} />
+      <Logo id={'backgroundLogo'} className={`w-full h-fit relative opacity-5`} color/>
     </div>
   )
 }

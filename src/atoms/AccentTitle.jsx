@@ -7,7 +7,7 @@ export default function AccentTitle({ text, className, style }) {
   return (
     <h3
       style={style}
-      className={`font-pop inline-flex font-semibold text-black text-base lg:text-lg mb-4 mt-2 ${
+      className={`font-bel inline-flex font-semibold text-black text-base lg:text-lg mb-4 mt-2 ${
         className && className
       }`}
     >

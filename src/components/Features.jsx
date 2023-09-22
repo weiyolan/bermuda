@@ -17,7 +17,7 @@ let colors = [
 export default function Features({ title, values }) {
   const locale = useLocale();
   return (
-    <Section>
+    <Section id={'features'}>
       <div className="">
         <H2 className={`text-center`} text={title} />
         <div className=" flex justify-center gap-8 px-8 pt-6">

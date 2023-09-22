@@ -19,16 +19,16 @@ export default function CTA({ text }) {
     ctx.add(() => {
       // let animation = gsap.timeline()
       gsap.to([".ctaLines"], {
-        borderColor:hovering ? "#667D61FF" : "#667D6100",
+        borderColor: hovering ? "#667D61FF" : "#667D6100",
         duration: 0.1,
-        id:'lineOpacity',
+        id: 'lineOpacity',
         ease: "none",
-        delay:hovering?0:0.8,
-        overwrite:true,
+        delay: hovering ? 0 : 0.8,
+        overwrite: true,
       });
       gsap.to([".ctaLines"], {
         duration: 1,
-        id:'lineWidth',
+        id: 'lineWidth',
         width: hovering ? "100vw" : 0,
         // ease: "none",
         ease: "expo.out",
@@ -38,25 +38,40 @@ export default function CTA({ text }) {
     });
   }, [hovering, clicking, active]);
 
+
+  useEffect(() => {
+    function makeHover(e) {
+      if (e.y > myRef?.current.getBoundingClientRect().top) {
+        !hovering && setHovering(true)
+      } else {
+        hovering && setHovering(false)
+      }
+    }
+    window.addEventListener('mousemove', makeHover)
+    return () => window.removeEventListener('mousemove', makeHover)
+
+  }, [hovering])
+
   return (
-    <Section
-      // ref={myRef}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => {
-        setHovering(false);
-        setClicking(false);
-      }}
-      onMouseDown={() => setClicking(true)}
-      onMouseUp={() => setClicking(false)}
-      onFocus={() => setActive(true)}
-      onBlur={() => setActive(false)}
-      tabIndex="0"
-      className={"flex flex-col items-center gap-10"}
+    <div ref={myRef}
     >
-      <Line className={"ctaLines w-0 border-2 border-[#667D6100] "} />
-      <Button className={`text-2xl`} text={text} to={"/contact#form"} />
-      <Line className={"ctaLines w-0 border-2 border-[#667D6100] "} />
-      {/* <Line /> */}
-    </Section>
+      <Section
+        // onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => {
+          // setHovering(false);
+          setClicking(false);
+        }}
+        onMouseDown={() => setClicking(true)}
+        onMouseUp={() => setClicking(false)}
+        onFocus={() => setActive(true)}
+        onBlur={() => setActive(false)}
+        tabIndex="0"
+        className={"flex flex-col items-center gap-10"}
+      >
+        <Line className={"ctaLines w-0 border-2 border-[#667D6100] "} />
+        <Button className={`text-2xl`} text={text} to={"/contact#form"} />
+        <Line className={"ctaLines w-0 border-2 border-[#667D6100] "} />
+        {/* <Line /> */}
+      </Section></div>
   );
 }

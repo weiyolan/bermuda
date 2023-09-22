@@ -4,16 +4,12 @@ import "../scrollbar.css";
 // import { Inter } from 'next/font/google'
 import { Belleza } from "next/font/google";
 import { Rajdhani } from "next/font/google";
-import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin";
-import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import Navigation from "@/components/Navigation";
 import { currentLocale } from "next-i18n-router";
 import Footer from "@/components/Footer";
 import UpButton from "@/components/UpButton";
 import { getFooter, getNav } from "@/sanity/sanity-utils";
-import BackgroundLogo from "@/atoms/BackgroundLogo";
+// import BackgroundLogo from "@/atoms/BackgroundLogo";
 
 const belleza = Belleza({
   subsets: ["latin"],
@@ -28,7 +24,6 @@ const rajdhani = Rajdhani({
   display: "swap",
 });
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin);
 
 export const metadata = {
   title: "Bermuda Events",
@@ -43,8 +38,10 @@ export default async function RootLayout({ children }) {
   return (
     <html lang={locale}>
       <body
-        //  bg-black
-        className={` bg-gradient-to-br from-white to-[#fff7ee]  text-black ${belleza.variable} ${rajdhani.variable} overflow-x-hidden`}
+        //  bg-black 
+        suppressHydrationWarning 
+        style={{}}
+        className={` bg-gradient-to-br from-white to-[#fff7ee]  text-black ${belleza.variable} ${rajdhani.variable}  overflow-x-hidden`}
       >
         {/* <body className={inter.className}> */}
         <header>

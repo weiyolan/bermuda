@@ -14,11 +14,14 @@ const nextConfig = withPWA({
   //   locales: ['en', 'nl'],
   //   defaultLocale: 'en',
   // },
+  // For Faster Dev:
+  // concurrentFeatures: true,
+  optimizeFonts:false,
+
   images: {
     // dangerouslyAllowSVG: true,
     // contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // domains: ['cdn.sanity.io'],
-
     // NEXTJS13
     remotePatterns: [
       {

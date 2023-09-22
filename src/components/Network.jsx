@@ -18,7 +18,7 @@ export default function Network({ title, members }) {
   return (
     <Section id='network'>
       <H2 className="text-center" text={title[locale]} />
-      <div className="flex w-fit gap-24 px-12 max-w-[99vw] overflow-y-auto overflow-x-scroll no-scrollbar">
+      <div className="flex w-fit gap-24 px-12 max-w-[99vw] overflow-y-hidden overflow-x-scroll no-scrollbar">
         {members?.map((member, i) => (
           <Member
             name={member.name}

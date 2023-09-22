@@ -32,7 +32,6 @@ export default function Hero({ alt, imgUrl }) {
         //   ease: 'elastic.out(1, 0.5)',
         //   // ease: 'expo.out',
         // });
-
         loaded && gsap.to(['.bermudaLogoTextLetter'], {
           duration: 1,
           autoAlpha: 1,
@@ -41,8 +40,6 @@ export default function Hero({ alt, imgUrl }) {
         });
       });
   }, [hovering, clicking, active, loaded]);
-
-
 
   return (
     <div className="relative w-full select-none h-screen flex flex-col justify-center items-center">
@@ -69,11 +66,10 @@ export default function Hero({ alt, imgUrl }) {
         onBlur={() => setActive(false)}
         tabIndex='0'
         className="w-[20%] h-[20%] blur-[100px] absolute border-debug bg-white/80 center-center -translate-y-[40%]" />
-      <div>
-        <LogoAnimMain color className={` w-36 h-36`} />
+      <div ref={myRef}>
+        <LogoAnimMain color className={`w-36 h-36`} />
       </div>
       <LogoText color className={`relative mt-2 w-1/4 cursor-pointer`} textClassName={'bermudaLogoTextLetter opacity-0 '} />
     </div>
   );
 }
-
