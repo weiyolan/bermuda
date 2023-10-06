@@ -70,9 +70,9 @@ export default function CTA({ text }) {
         tabIndex="0"
         className={"flex flex-col items-center gap-10 h-fit py-1"}
       >
-        <Line className={"ctaLines w-0 bg-gradient-to-r h-1 from-browndark via-brown to-green bg-clip-border"} />
+        <Line className={"ctaLines w-0 bg-gradient-to-r h-1 from-browndark via-brown to-green"} />
         <Button className={`text-2xl`} text={text} to={"/contact#form"} />
-        <Line className={"ctaLines w-0 bg-gradient-to-r h-1  from-browndark via-brown to-green bg-clip-border"} />
+        <Line className={"ctaLines w-0 bg-gradient-to-r h-1  from-browndark via-brown to-green"} />
         {/* <Line /> */}
       </Section>
   );
