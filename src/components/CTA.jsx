@@ -41,7 +41,7 @@ export default function CTA({ text }) {
 
   useEffect(() => {
     function makeHover(e) {
-      console.log(myRef?.current.getBoundingClientRect().top)
+      console.log(e.y, myRef?.current.getBoundingClientRect().top)
       if (e.y > myRef?.current.getBoundingClientRect().top) {
         !hovering && setHovering(true)
       } else {
