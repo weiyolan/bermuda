@@ -28,6 +28,8 @@ const rajdhani = Rajdhani({
 export const metadata = {
   title: "Bermuda Events",
   description: "The most personal event experience you can get.",
+  "msapplication-TileColor": "#da532c",
+  "theme-color": "#ffffff",
 };
 
 export default async function RootLayout({ children }) {
@@ -39,7 +41,7 @@ export default async function RootLayout({ children }) {
     <html lang={locale}>
       <body
         //  bg-black 
-        suppressHydrationWarning 
+        suppressHydrationWarning
         style={{}}
         className={` bg-gradient-to-br from-white to-[#fff7ee]  text-black ${belleza.variable} ${rajdhani.variable}  overflow-x-hidden`}
       >

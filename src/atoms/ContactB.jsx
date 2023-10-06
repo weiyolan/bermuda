@@ -7,12 +7,25 @@ import useLocale from "@/utils/useLocale";
 // import { useCurrentLocale } from 'next-i18n-router/client';
 // import i18nConfig from '@/i18nConfig';
 
-let whatsappLink =
-  "https://wa.me/32476506209?text=Hi+Milo%2C+%0D%0AI+got+your+WhatsApp+from+your+website+miloweiler.com.+Are+you+free+to+talk+any+time+soon+about+a+project+I+have+in+mind%3F+%0D%0AThanks%2C%0D%0A";
-let mailLink =
-  "mailto:contact@miloweiler.com?subject=Photography%20Project&body=Hi%20Milo%2C%0A%0AI%20have%20a%20photography%20project%20for%20you.%0ACould%20we%20talk%20about%20this%20any%20time%20soon%3F%0A%0AThanks%20in%20advance%2C%0A%0A";
+// let whatsappLink =
+//   "https://wa.me/32476506209?text=Hi+there%2C+%0D%0AI+got+your+WhatsApp+from+your+website.+Are+you+free+to+talk+about+a+project+any+time+soon%3F+%0D%0AThanks%2C%0D%0A";
 
-export default function ContactB({ className }) {
+let whatsappLinkEnd =
+  "?text=Hi+there%2C+%0D%0AI+got+your+WhatsApp+from+your+website.+Are+you+free+to+talk+about+a+project+any+time+soon%3F+%0D%0AThanks%2C%0D%0A";
+
+// let mailLink =
+//   "mailto:contact@miloweiler.com?subject=Photography%20Project&body=Hi%20Milo%2C%0A%0AI%20have%20a%20photography%20project%20for%20you.%0ACould%20we%20talk%20about%20this%20any%20time%20soon%3F%0A%0AThanks%20in%20advance%2C%0A%0A";
+
+let mailLinkEnd =
+  "?subject=Project%20Idea&body=Hi%2C%0A%0AI%20have%20a%20fun%20project%20in%20mind.%0ACould%20we%20talk%20about%20this%20any%20time%20soon%3F%0A%0AThanks%20in%20advance%2C%0A%0A";
+
+let phoneTitle = {en: "Call phone number", fr:"Appeler le numéro téléphone", nl:"Bel het nummer"}
+let whatsappTitle = {en: "Send WhatsApp Message", fr:"Envoyer un message WhatsApp", nl:"Stuur een WhatsApp bericht"}
+let mailTitle = {en: "Send an Email", fr:"Envoyer un courriel", nl:"Stuur een email"}
+
+export default function ContactB({ className, phone, email }) {
+  // const { email, phone } = await getContactDetails();
+
   // const { locale } = useAppContext()
   // const { darkMode } = usePageContext()
   let darkMode = false;
@@ -23,25 +36,18 @@ export default function ContactB({ className }) {
 
   return (
     <div
-      className={`flex gap-3 mt-4 sm:mt-4  fill-white ${
-        className && className
-      }`}
+      className={`flex gap-3 mt-4 sm:mt-4  fill-white ${className && className
+        }`}
     >
       <Link
         className="focus:outline-none group"
-        href="tel:+32476506209"
-        title={`${
-          locale === "en" ? "Call phone number" : "Appeler le numéro téléphone"
-        }`}
+        href={`tel:${phone}`}
+        title={phoneTitle[locale]}
       >
         <Button>
           <svg
             className={`w-4 sm:w-4 `}
-            alt={`${
-              locale === "en"
-                ? "Call phone number"
-                : "Appeler le numéro téléphone"
-            }`}
+            alt={phoneTitle[locale]}
             viewBox="0 0 27 27"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -52,24 +58,16 @@ export default function ContactB({ className }) {
 
       <Link
         className="focus:outline-none group"
-        title={`${
-          locale === "en"
-            ? "Send WhatsApp Message"
-            : "Envoyer un message WhatsApp"
-        }`}
+        title={whatsappTitle[locale]}
         target="_blank"
         rel="noopener noreferrer"
-        href={whatsappLink}
+        href={`https://wa.me/${phone.slice(1,phone.length)}${whatsappLinkEnd}`}
       >
         <Button ext={true}>
           <svg
             className={`w-4 sm:w-4 `}
             viewBox="0 0 18 18"
-            alt={`${
-              locale === "en"
-                ? "Send WhatsApp Message"
-                : "Envoyer un message WhatsApp"
-            }`}
+            alt={whatsappTitle[locale]}
           >
             <path
               fillRule="evenodd"
@@ -82,15 +80,15 @@ export default function ContactB({ className }) {
 
       <Link
         className="focus:outline-none group"
-        title={`${locale === "en" ? "Send an Email" : "Envoyer un courriel"}`}
+        title={mailTitle[locale]}
         target="_blank"
         rel="noopener noreferrer"
-        href={mailLink}
+        href={`mailto:${email}${mailLinkEnd}`}
       >
         <Button ext={true}>
           <svg
             className={`w-4 sm:w-4 `}
-            alt={`${locale === "en" ? "Send an Email" : "Stuur een"}`}
+            alt={mailTitle[locale]}
             viewBox="0 0 40 40"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -105,7 +103,7 @@ export default function ContactB({ className }) {
 function Button({ children }) {
   return (
     <div
-      className={`rounded-full bg-green p-1.5 border-2 border-transparent focus:outline-none cursor-pointer
+      className={`rounded-full bg-green p-1.5 border-2 border-transparent focus:outline-none cursor-pointer fill-white
         duration-200 shadow-xl hover:border-darkPrimary/90 hover:animate-borderPulse  group-hover:scale-[1.15]  group-active:shadow-sm  group-active:scale-[0.95]`}
     >
       {children}

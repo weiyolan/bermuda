@@ -106,6 +106,20 @@ export async function getDetails() {
   );
 }
 
+export async function getContactDetails() {
+  return client.fetch(
+    groq`*[_type == "cpDetails"][0]{
+      companyName,
+      address1,
+      address2,
+      country,
+      email,
+      phone,
+      vat,
+    }`
+  )
+}
+
 export async function getTrusted() {
   return client.fetch(
     groq`*[_type == "cpTrustedBy"][0]{

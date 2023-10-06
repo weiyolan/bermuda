@@ -19,10 +19,12 @@ import useGsap from "@/utils/useGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
-let mailLink =
-  "mailto:contact@miloweiler.com?subject=Photography%20Project&body=Hi%20Milo%2C%0A%0AI%20have%20a%20photography%20project%20for%20you.%0ACould%20we%20talk%20about%20this%20any%20time%20soon%3F%0A%0AThanks%20in%20advance%2C%0A%0A";
+let mailLinkEnd =
+  "?subject=Project%20Idea&body=Hi%2C%0A%0AI%20have%20a%20fun%20project%20in%20mind.%0ACould%20we%20talk%20about%20this%20any%20time%20soon%3F%0A%0AThanks%20in%20advance%2C%0A%0A";
 
-export default function ContactDetails({ title, text, alt, imgUrl }) {
+
+
+export default function ContactDetails({ title, text, alt, imgUrl, companyName, address1, address2, country, email, vat, phone }) {
   let tl = useRef(null);
 
   let ctx = useGsap()
@@ -83,39 +85,46 @@ export default function ContactDetails({ title, text, alt, imgUrl }) {
           </p>
 
           <div className="font-pop mt-4 flex flex-col gap-6 xs:flex-row">
+            <div className="flex-1 flex-col">
+              <AccentTitle
+                text="Address"
+                className={"contactAnimation mb-0 mt-0"}
+              />
+              <p className="contactAnimation">
+                {`${companyName}
+                ${address1}
+                ${address2}
+                ${country}`}
+                {/* {`miloweiler.com
+                Hof Savelkoul 40
+                2640 Mortsel
+                Belgium`} */}
+              </p>
+            </div>
             <div className="flex-1 flex-col ">
               <AccentTitle
                 text="Details"
                 className={"contactAnimation mb-0 mt-0"}
               />
               <p className="font-pop contactAnimation w-fit">
-                {"TVA: BE 0791 549 197"}
+                {`TVA: ${vat}`}
               </p>
               <ArrowLink
                 className={"contactAnimation"}
                 inText
-                text="contact@miloweiler.com"
-                to={mailLink}
+                text={email}
+                to={`mailto:${email}${mailLinkEnd}`}
                 ext
                 tabIndex="0"
               />
               <ArrowLink
                 className={"contactAnimation"}
                 inText
-                text="+32 476 50 62 09"
-                to="tel:+32476506209"
+                text={phone}
+                to={`tel:${phone}`}
                 tabIndex="0"
               />
-              <ContactB className={"contactAnimation mt-4 sm:mt-2"} />
-            </div>
-            <div className="flex-1 flex-col">
-              <AccentTitle
-                text="Address"
-                className={"contactAnimation mb-0 mt-0"}
-              />
-              <p className="contactAnimation whitespace-pre">
-                {"miloweiler.com\nHof Savelkoul 40\n2640 Mortsel\nBelgium"}
-              </p>
+              <ContactB phone={phone} email={email} className={"contactAnimation mt-4 sm:mt-2"} />
             </div>
           </div>
         </div>
