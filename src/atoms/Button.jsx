@@ -24,7 +24,7 @@ export default function Button({ text, to, className }) {
   }, [hovering, clicking]);
 
   return (
-    <div
+    <button
       ref={buttonRef}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => {
@@ -34,12 +34,10 @@ export default function Button({ text, to, className }) {
       onMouseDown={() => setClicking(true)}
       onMouseUp={() => setClicking(false)}
       className={twMerge(
-        `group relative max-w-fit cursor-pointer rounded-md bg-green fill-white px-4 py-2 font-bel text-white shadow-lg  ${
-          className && className
-        }`,
+        `group relative max-w-fit cursor-pointer rounded-md bg-green fill-white px-4 py-2 font-bel text-white shadow-lg transition-shadow duration-200`,className
       )}
     >
       <ArrowLink text={text} to={to} />
-    </div>
+    </button>
   );
 }

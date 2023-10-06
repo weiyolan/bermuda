@@ -140,14 +140,8 @@ export default function Footer({ style, className, lists, title }) {
         style={{ ...style }}
       >
         <div className="flex w-full justify-between pb-2">
-          <div className="flex w-2/5 flex-col items-center gap-2 sm:items-start">
-            <SubTitle
-              darkMode={true}
-              noMargin
-              small
-              className="pt-2"
-              center
-              mainTitle={title}
+          <div className="flex w-2/5 flex-col  gap-2 sm:items-start items-center">
+            <SubTitle darkMode={true} noMargin small className="pt-2" center mainTitle={title}
             />
           </div>
           <div className="mx-auto flex w-3/5 max-w-6xl flex-col items-center justify-between sm:flex-row sm:items-start">
@@ -199,16 +193,7 @@ export default function Footer({ style, className, lists, title }) {
   );
 }
 
-function SubTitle({
-  mainTitle,
-  subTitle,
-  left,
-  right,
-  style,
-  small,
-  className,
-  child,
-}) {
+function SubTitle({ mainTitle, subTitle, left, right, style, small, className, child }) {
   return (
     <div
       style={style}
@@ -217,16 +202,14 @@ function SubTitle({
       <h2
         className={`whitespace-pre-wrap font-bel font-medium  
         uppercase md:whitespace-nowrap
-        ${
-          small ? "text-lg" : "mb-2 text-2xl mobm:text-2xl sm:mb-2 sm:text-3xl"
-        }  ${child ? child + "-child" : ""}`}
+        ${small ? "text-lg" : "mb-2 text-2xl mobm:text-2xl sm:mb-2 sm:text-3xl"
+          }  ${child ? child + "-child" : ""}`}
       >
         {mainTitle}
       </h2>
       <div
-        className={`font-pop whitespace-pre-wrap ${
-          left || right ? "text-justify" : ""
-        } ${child ? child + "-child" : ""}`}
+        className={`font-pop whitespace-pre-wrap ${left || right ? "text-justify" : ""
+          } ${child ? child + "-child" : ""}`}
       >
         {subTitle}
       </div>
@@ -262,8 +245,8 @@ function List({ list, mobile }) {
         >
           <Link
             className="border border-transparent duration-200 focus-within:scale-110 focus-within:border-b-white hover:border-b-white focus:outline-none  "
-            href={typeof item.url ==='string' ? item?.url : (item?.url?.[locale])}
-            title={typeof item.url ==='string'? `${item.text?.[locale]}`:`Download ${item.text?.[locale]}`}
+            href={typeof item.url === 'string' ? item?.url : (item?.url?.[locale])}
+            title={typeof item.url === 'string' ? `${item.text?.[locale]}` : `Download ${item.text?.[locale]}`}
             target={item.ext ? "_blank" : undefined}
             rel={item.ext ? "noopener noreferrer" : undefined}
           >

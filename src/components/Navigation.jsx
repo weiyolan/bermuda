@@ -128,7 +128,7 @@ export default function Navigation({ links, cta }) {
       });
       gsap.to(".navLogo", {
         scale: big ? 1 : 0.7,
-        duration: 0.5,
+        duration: 0.2,
         transformOrigin: "50% 50%",
         // ease: "elastic.out(1, 0.5)",
         ease: "expo.out",
@@ -136,18 +136,18 @@ export default function Navigation({ links, cta }) {
       });
       gsap.to(".navLogoText", {
         autoAlpha: big ? 1 : 0,
-        duration: 0.3,
-        display: big ? 'block' : 'none'  ,
+        duration: 0.2,
+        display: big ? 'block' : 'none',
         // ease: "elastic.out(1, 0.5)",
-        ease: "expo.out",
+        ease: "ease.out",
         // delay: () => big ? 0 : 0,
       });
       gsap.to(".navList", {
         gap: big ? 40 : 30,
         fontSize: big ? "1.15rem" : "1rem",
-        duration: 0.3,
+        duration: 0.2,
         // ease: "elastic.out(1, 0.5)",
-        ease: "expo.out",
+        ease: "ease.out",
         // delay: () => big ? 0 : 0,
       });
       gsap.to(".navLogoLink", {
@@ -161,7 +161,7 @@ export default function Navigation({ links, cta }) {
       });
       gsap.to(myRef.current, {
         duration: 0.5,
-        scale:  hovering ? (clicking ? 0.95 : 1.05) : 1 ,
+        scale: hovering ? (clicking ? 0.95 : 1.05) : 1,
         transformOrigin: '50% 50%',
         // ease: 'elastic.out(1, 0.5)',
         ease: 'expo.out',
@@ -175,7 +175,7 @@ export default function Navigation({ links, cta }) {
     // <FadeDiv className='w-full relative'>
     // <FadeDiv style={{ transform: "translate3d(0, 0, 0)" }} className={`fixed w-full top-0 justify-center flex navBar  `} type={'leftRight'} amount={30}>
     <div
-      className={`navBar navBar fixed top-0 z-10 flex w-full justify-between text-base uppercase bg-brown p-4 px-8`}
+      className={`navBar navBar shadow-lg fixed top-0 z-10 flex w-full justify-between text-base uppercase bg-brown p-4 px-8`}
     >
       <Link href="/"
         ref={myRef}
@@ -209,7 +209,7 @@ export default function Navigation({ links, cta }) {
           text={cta}
           to="contact/#form"
           className={
-            " relative rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown"
+            "relative rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown shadow-sm hover:shadow-md"
           }
         />
       </div>
@@ -240,7 +240,7 @@ function MyButton({ text, to, className, ext }) {
       gsap.to(`.navButton${text.slice(0, 3)}`, {
         scale: hover ? 1.1 : 1,
         duration: 0.2,
-        ease:'expo.out',
+        ease: 'expo.out',
       });
       gsap.to(`.navLine${text.slice(0, 3)}`, {
         width: hover || selected ? "100%" : 0,
@@ -251,7 +251,7 @@ function MyButton({ text, to, className, ext }) {
               : "#000000"
             : "transparent",
         duration: 0.2,
-        ease:'expo.out',
+        ease: 'expo.out',
       });
     });
   }, [hover, pathname]);
@@ -267,12 +267,7 @@ function MyButton({ text, to, className, ext }) {
     >
       <div className={`mx-auto w-fit ${className && className}`}>
         {text}
-        <Line
-          className={`mx-auto navLine${text.slice(
-            0,
-            3,
-          )} w-0 border-transparent`}
-        />
+        <Line className={`mx-auto navLine${text.slice(0, 3,)} w-0 border-transparent`} />
       </div>
     </Link>
   );

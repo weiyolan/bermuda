@@ -8,16 +8,36 @@ import useLocale from "@/utils/useLocale";
 import { gsap } from "gsap/dist/gsap";
 import { useEffect, useRef, useState } from "react";
 import useGsap from "@/utils/useGsap";
-
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 // let content = {};
 
 export default function Network({ title, members }) {
   let locale = useLocale();
+  let ctx = useGsap()
 
+  useEffect(() => {
+    ctx.add(() => {
+
+      gsap.from(['.networkAnimation'], {
+        y: 30,
+        autoAlpha: 0,
+        stagger: { each: 0.15 },
+        ease: 'expo.out',
+        duration: 1,
+        scrollTrigger: {
+          trigger: '.networkAnimation',
+          start: 'top 70%',
+          // markers: true,
+          toggleActions: 'play none none reverse',
+        }
+      })
+    })
+  }, [])
   // console.log(members)
   return (
     <Section id='network'>
-      <H2 className="text-center" text={title[locale]} />
+      <H2 className="text-center networkAnimation" text={title[locale]} />
       <div className="flex w-fit gap-24 px-12 max-w-[99vw] overflow-y-hidden overflow-x-scroll no-scrollbar">
         {members?.map((member, i) => (
           <Member
@@ -118,7 +138,7 @@ function Member({ url, name, func, text, alt, print }) {
         setActive(!active);
       }}
       tabIndex="0"
-      className="relative flex cursor-pointer flex-col items-center mt-2"
+      className="relative flex cursor-pointer flex-col items-center mt-2 networkAnimation"
     >
       <div
         ref={myImgContainer}

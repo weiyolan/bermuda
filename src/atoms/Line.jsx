@@ -6,13 +6,12 @@ export default function Line({ className }) {
   let darkMode = false;
   return (
     <div
-      className={`h-0 border rounded-xl ${
-        className
-          ? className
-          : darkMode
+      className={`h-0 border rounded-xl ${className
+        ? className
+        : darkMode
           ? "border-primary"
           : "border-darkPrimary" + "w-full"
-      } `}
+        } `}
     />
   );
 }

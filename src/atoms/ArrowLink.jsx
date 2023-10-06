@@ -44,7 +44,7 @@ const ArrowLink = ({
 export default ArrowLink;
 function Arrow() {
   return (
-    <span className=" align-middle flex text-inherit my-auto fill-inherit duration-300 relative -mr-[1.5rem]">
+    <span className=" align-middle flex text-inherit my-auto fill-inherit transition-transform duration-300 relative -mr-[1.5rem]">
       <BsArrowRightShort
         alt=""
         className={`duration-300 left-0 -translate-x-[100%] group-hover:translate-x-1/4 group-hover:scale-125 group-hover:opacity-100 group-focus-within:opacity-100 opacity-0  `}

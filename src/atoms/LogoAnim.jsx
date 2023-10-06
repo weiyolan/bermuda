@@ -3,7 +3,7 @@ import { gsap } from 'gsap/dist/gsap';
 import { useEffect, useRef, useState } from 'react';
 import useGsap from '@/utils/useGsap';
 
-export default function LogoAnim({ className, hovering: parentHovering, clicking:parentClicking, color }) {
+export default function LogoAnim({ className, hovering: parentHovering, clicking: parentClicking, color }) {
   let [hovering, setHovering] = useState(parentHovering === undefined ? false : parentHovering);
   let [clicking, setClicking] = useState(false);
   let [active, setActive] = useState(false);
@@ -64,8 +64,8 @@ export default function LogoAnim({ className, hovering: parentHovering, clicking
         setHovering(false);
         setClicking(false);
       } : undefined}
-      onMouseDown={parentClicking === undefined ?() => setClicking(true):undefined}
-      onMouseUp={parentClicking === undefined ?() => setClicking(false):undefined}
+      onMouseDown={parentClicking === undefined ? () => setClicking(true) : undefined}
+      onMouseUp={parentClicking === undefined ? () => setClicking(false) : undefined}
       // onFocus={() => setActive(true)}
       // onBlur={() => setActive(false)}
       // tabIndex='0'

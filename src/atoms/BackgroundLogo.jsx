@@ -1,6 +1,6 @@
 "use client"
 import Logo from "./Logo";
-import {useRef,useEffect} from 'react'
+import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import useGsap from "@/utils/useGsap";
@@ -15,7 +15,7 @@ export default function BackgroundLogo() {
     function scrubLogo() {
       let tl = gsap.timeline()
         .to(myRef.current, {
-          yPercent: -50,
+          yPercent: -40,
           duration: 100,
         }, 0)
       return tl
@@ -34,7 +34,7 @@ export default function BackgroundLogo() {
               // start: () => 'bottom +=100vh',
               // end: 'end',
               // end: () => `+=${0.79 * screenHeight}px`,
-              scrub: 2,
+              scrub: 5,
               markers: false,
               // overwrite: true,
               // preventOverlaps: true,
@@ -45,9 +45,9 @@ export default function BackgroundLogo() {
   }, []);
 
   return (
-    <div  ref={myRef}
-      className="z-0 fixed w-[60vw] h-[60vw] top-1/3 right-0" >
-      <Logo id={'backgroundLogo'} className={`w-full h-fit relative opacity-5`} color/>
+    <div ref={myRef}
+      className="z-0 fixed w-[60vw] h-[60vw] top-[5%] right-0" >
+      <Logo id={'backgroundLogo'} className={`w-full h-fit relative opacity-5`} color />
     </div>
   )
 }

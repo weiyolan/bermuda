@@ -19,7 +19,7 @@ export default function CTA({ text }) {
     ctx.add(() => {
       // let animation = gsap.timeline()
       gsap.to([".ctaLines"], {
-        borderColor: hovering ? "#667D61FF" : "#667D6100",
+        // borderColor: hovering ? "#667D61FF" : "#667D6100",
         duration: 0.1,
         id: 'lineOpacity',
         ease: "none",
@@ -68,9 +68,9 @@ export default function CTA({ text }) {
         tabIndex="0"
         className={"flex flex-col items-center gap-10"}
       >
-        <Line className={"ctaLines w-0 border-2 border-[#667D6100] "} />
+        <Line className={"ctaLines w-0 border-2 border-[#667D6100] bg-gradient-to-r h-1 from-browndark via-brown to-green bg-clip-border"} />
         <Button className={`text-2xl`} text={text} to={"/contact#form"} />
-        <Line className={"ctaLines w-0 border-2 border-[#667D6100] "} />
+        <Line className={"ctaLines w-0 border-2 border-[#667D6100] bg-gradient-to-r h-1 from-browndark via-brown to-green bg-clip-border"} />
         {/* <Line /> */}
       </Section></div>
   );
