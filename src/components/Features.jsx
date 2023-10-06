@@ -44,7 +44,7 @@ export default function Features({ title, values }) {
           trigger: '.featureCard',
           start: 'top 70%',
           // markers: true,
-          toggleActions: 'play none none reverse',
+          // toggleActions: 'play none none reverse',
         }
       })
     })

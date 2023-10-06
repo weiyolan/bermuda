@@ -33,14 +33,14 @@ export default function AboutSection({ alt, imgUrl, text, title, button }) {
           trigger: '.aboutAnimation',
           start: 'top 70%',
           // markers: true,
-          toggleActions: 'play none none reverse',
+          // toggleActions: 'play none none reverse',
         }
       })
     })
   }, [])
 
   return (
-    <Section id={"about"}>
+    <Section id={"about"} className="scroll-m-24">
       <H2 text={title} className={'text-left aboutAnimation'} />
       <LayoutSplit right className={""}>
         <div className="h-96  w-full rounded-xl select-none overflow-hidden relative shadow-lg aboutAnimation">

@@ -35,7 +35,7 @@ export default function TrustedLogo({
 
   return (
     <Link
-      className="h-fit w-fit cursor-pointer"
+      className="trustedAnimation h-fit w-fit cursor-pointer"
       href={link}
       title={`Go to ${name}'s website`}
       target="_blank"

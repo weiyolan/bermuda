@@ -3,7 +3,7 @@ import AccentTitle from "@/atoms/AccentTitle";
 // import client from 'lib/sanity';
 // import { useNextSanityImage } from "next-sanity-image";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 // import { usePageContext } from '@/utils/pageContext';
@@ -15,15 +15,40 @@ import LayoutSplit from "@/atoms/LayoutSplit";
 import Line from "@/atoms/Line";
 import H2 from "@/atoms/H2";
 import TrustedLogo from "./TrustedLogo";
+import useGsap from "@/utils/useGsap";
 // import useLocale from "@/utils/useLocale";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function TrustedBy({ title, partners }) {
   // const { ctx, tl } = usePageContext()
-  let ctx = useRef(null);
   let tl = useRef(null);
   let trusted = useRef();
+
+  let ctx = useGsap()
+
+  useEffect(() => {
+    ctx.add(() => {
+      // gsap.set(['.featureCard'], {
+      //   autoAlpha: 0,
+      //   // stagger:0,
+      //   y: 30,
+      // })
+      gsap.from(['.trustedAnimation'], {
+        y: 30,
+        autoAlpha: 0,
+        stagger: { each: 0.1 },
+        ease: 'expo.out',
+        duration: 1,
+        scrollTrigger: {
+          trigger: '.trustedAnimation',
+          start: 'top 70%',
+          // markers: true,
+          // toggleActions: 'play none none reverse',
+        }
+      })
+    })
+  }, [])
 
   // let { width } = useAppContext()
   // let width = window?.innerWidth;
@@ -72,7 +97,7 @@ export default function TrustedBy({ title, partners }) {
           ref={trusted}
           className="trusted-by trusted-by-div relative w-full text-center"
         >
-          <H2 className="opacity-1 title mx-auto max-w-[70%]" text={title} />
+          <H2 className="trustedAnimation opacity-1 title mx-auto max-w-[70%]" text={title} />
           <div className="artist-container flex flex-wrap justify-center gap-12 sm:flex-nowrap sm:gap-6 lg:gap-12">
             {partners.map((logo, i) => (
               <TrustedLogo

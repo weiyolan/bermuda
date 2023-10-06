@@ -10,6 +10,7 @@ import i18nConfig from "@/i18nConfig";
 import Section from "@/atoms/Section";
 import H2 from "@/atoms/H2";
 import LayoutSplit from "@/atoms/LayoutSplit";
+import useGsap from "@/utils/useGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,31 +29,54 @@ export default function Form({title}) {
   // const { width } = useAppContext()
   // let width = window.innerWidth;
 
-  let ctx = useRef();
+  // let ctx = useRef();
+
+  // useEffect(() => {
+  //   ctx.current = gsap.context(() => {
+  //     gsap.from(".formAnimation", {
+  //       translateX: -50,
+  //       translateY: 80,
+  //       opacity: 0,
+  //       ease: "back",
+  //       duration: 0.5,
+  //       stagger: 0.1,
+  //       scrollTrigger: {
+  //         trigger: ".form-container",
+  //         start: `top bottom`,
+  //         // start: `top ${width < 648 ? '85%' : '60%'}`,
+  //         end: "top 50%",
+  //         // toggleActions:'restart none none reverse',
+  //         scrub: 1,
+  //         markers: false,
+  //       },
+  //     });
+  //   });
+  //   return () => ctx.current.revert();
+  // }, [ctx]);
+
+
+  let ctx = useGsap()
 
   useEffect(() => {
-    ctx.current = gsap.context(() => {
-      gsap.from(".form-el", {
-        translateX: -50,
-        translateY: 80,
-        opacity: 0,
-        ease: "back",
-        duration: 0.5,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: ".form-container",
-          start: `top bottom`,
-          // start: `top ${width < 648 ? '85%' : '60%'}`,
-          end: "top 50%",
-          // toggleActions:'restart none none reverse',
-          scrub: 1,
-          markers: false,
-        },
-      });
-    });
-    return () => ctx.current.revert();
-  }, [ctx]);
+    ctx.add(() => {
 
+      gsap.from(['.formAnimation'], {
+        y: 30,
+        autoAlpha: 0,
+        stagger: { each: 0.1 },
+        // ease: 'back',
+        ease: 'expo.out',
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: '.formAnimation',
+          start: 'top 70%',
+          // markers: true,
+          // toggleActions: 'play none none reverse',
+        }
+      })
+    })
+  }, [])
+  
   function encode(data) {
     return Object.keys(data)
       .map(
@@ -109,8 +133,8 @@ export default function Form({title}) {
   }
 
   return (
-    <Section id='form' className={''}>
-      <H2 text={title} />
+    <Section id='form' className={'scroll-mt-24'}>
+      <H2 text={title} className={'formAnimation'}/>
       <form
         onSubmit={handleSubmit}
         name="ContactForm"
@@ -144,7 +168,7 @@ export default function Form({title}) {
             }`}
           >
             <div className="grid col-start-1 col-span-3 min-[500px]:col-span-2 ">
-              <div className="form-el inline-block relative col-start-1 col-span-1 pr-3">
+              <div className="formAnimation inline-block relative col-start-1 col-span-1 pr-3">
                 <label
                   className="cursor-pointer font-semibold whitespace-nowrap inline-flex  mb-2 ml-1"
                   htmlFor="name"
@@ -170,7 +194,7 @@ export default function Form({title}) {
                 />
               </div>
 
-              <div className="form-el inline-block relative col-start-2 col-span-1 pl-3">
+              <div className="formAnimation inline-block relative col-start-2 col-span-1 pl-3">
                 <label
                   className=" cursor-pointer whitespace-nowrap font-semibold inline-flex mb-2 ml-1"
                   htmlFor="lastname"
@@ -197,7 +221,7 @@ export default function Form({title}) {
               </div>
             </div>
             {/* EMAIL */}
-            <div className="form-el  inline-block relative col-start-1 col-span-3 min-[400px]:col-span-2 min-[400px]:pr-4 min-[500px]:pr-0">
+            <div className="formAnimation  inline-block relative col-start-1 col-span-3 min-[400px]:col-span-2 min-[400px]:pr-4 min-[500px]:pr-0">
               <label
                 className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
                 htmlFor="email"
@@ -222,7 +246,7 @@ export default function Form({title}) {
             </div>
 
             {/* SUBJECT */}
-            <div className="form-el flex flex-col relative w-full col-start-1 col-span-2 min-[400px]:col-span-1 xs:pr-0 row-start-4 min-[400px]:col-start-3 min-[400px]:row-start-2 min-h-[50px] justify-start items-start min-[400px]:justify-end">
+            <div className="formAnimation flex flex-col relative w-full col-start-1 col-span-2 min-[400px]:col-span-1 xs:pr-0 row-start-4 min-[400px]:col-start-3 min-[400px]:row-start-2 min-h-[50px] justify-start items-start min-[400px]:justify-end">
               <label
                 className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
                 htmlFor="subject"
@@ -246,7 +270,7 @@ export default function Form({title}) {
             </div>
 
             {/* BUTTON */}
-            <div className="form-el w-full flex items-end justify-end  col-start-3 row-start-4 min-[500px]:col-start-3 min-[500px]:row-start-1 relative ">
+            <div className="formAnimation w-full flex items-end justify-end  col-start-3 row-start-4 min-[500px]:col-start-3 min-[500px]:row-start-1 relative ">
               <button
                 key="submit"
                 type={success ? "reset" : "submit"}
@@ -274,7 +298,7 @@ export default function Form({title}) {
           {/* MESSAGE */}
           <div
             data-lenis-prevent
-            className="form-el inline-flex flex-col w-full h-full "
+            className="formAnimation inline-flex flex-col w-full h-full "
           >
             <label
               className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"

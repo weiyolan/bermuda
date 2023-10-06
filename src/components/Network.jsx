@@ -22,14 +22,14 @@ export default function Network({ title, members }) {
       gsap.from(['.networkAnimation'], {
         y: 30,
         autoAlpha: 0,
-        stagger: { each: 0.15 },
+        stagger: { each: 0.10 },
         ease: 'expo.out',
         duration: 1,
         scrollTrigger: {
           trigger: '.networkAnimation',
           start: 'top 70%',
           // markers: true,
-          toggleActions: 'play none none reverse',
+          // toggleActions: 'play none none reverse',
         }
       })
     })
@@ -38,7 +38,7 @@ export default function Network({ title, members }) {
   return (
     <Section id='network'>
       <H2 className="text-center networkAnimation" text={title[locale]} />
-      <div className="flex w-fit gap-24 px-12 max-w-[99vw] overflow-y-hidden overflow-x-scroll no-scrollbar">
+      <div className="flex w-fit gap-24 px-12 py-4 max-w-[99vw] overflow-y-hidden overflow-x-scroll no-scrollbar">
         {members?.map((member, i) => (
           <Member
             name={member.name}
