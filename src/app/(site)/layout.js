@@ -18,7 +18,7 @@ const belleza = Belleza({
   display: "auto",
 });
 const rajdhani = Rajdhani({
-  subsets: ["latin"],
+  subsets: ["latin"], 
   weight: ["400", "500"],
   variable: "--font-raj",
   display: "swap",
