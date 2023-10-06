@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap/dist/gsap";
 import Line from "./Line";
 import { Observer } from "gsap/dist/Observer";
-import FadeDiv from "./FadeDiv";
+import FadeDiv from "../atoms/FadeDiv";
 import NavToggle from "./NavToggle";
 import LanguageToggle from "./LanguageToggle";
 

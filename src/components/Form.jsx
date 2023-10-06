@@ -14,7 +14,70 @@ import useGsap from "@/utils/useGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Form({title}) {
+const messageTitle={
+en:"Message",
+fr:"Message",
+nl:"Bericht",
+}
+
+
+const messagePlaceholder = {
+  en: "To begin, just start typing. For example: \nHi there, \nI need a really good event organizer for my project. \nCould we meet up to talk about it? \nKind regards",
+  fr: "Pour commencer, il suffit de taper. Par exemple: \nSalut, \nJ'aurais besoin un organisateur talentueux pour un project que j'ai en tête. \nPouvons-nous en parler ? \nA bientôt !",
+  nl: "Start hier met je bericht door gewoon te typen. Bijvoorbeeld: \nHallo, \nIk ben op zoek naar een getalenteerd team voor een event dat ik in gedachte heb. \nZouden we hier binnenkort over kunnen spreken? \nTot snel!",
+}
+
+const nameTitle = {en:"Name",
+fr:"Prénom",
+nl:"Voornaam",}
+
+const namePlaceholder = {
+  en: "Bobby",
+  fr: "Arno",
+  nl: "Peter"
+}
+const lastNameTitle = {en:"Last Name",
+fr:"Nom",
+nl:"Achternaam",}
+
+const lastNamePlaceholder = {
+  en: "McGoozy",
+  fr: "Du Chateau",
+  nl: "Selie"
+}
+const emailTitle={en:"Email",
+fr:"Courriel",
+nl:"Email",}
+
+const emailPlaceholder = {
+  en: "example@ywdesign.co",
+  fr: "example@ywdesign.co",
+  nl: "voorbeeld@ywdesign.co"
+}
+const subjectTitle={en:"Subject",
+fr:"Sujet",
+nl:"Onderwerp",}
+const subjectPlaceholder = {
+  en: "Project Name",
+  fr: "Nom du projet",
+  nl: "Projectnaam"
+}
+const hiddenTitle={en:"Hidden",
+fr:"Caché",
+nl:"Verborgen",}
+const hiddenPlaceholder = {
+  en:"Leave empty if you're human",
+  fr:"Ne pas remplir si vous êtes humain",
+  nl:"Niet invullen als je een mens bent."
+}
+
+const sendButtonTitle = {
+  en:"Send",
+  fr:"Envoyer",
+  nl:"Verzenden",
+}
+
+export default function Form({ title }) {
   const locale = useCurrentLocale(i18nConfig);
   let [success, setSuccess] = useState(false);
   // const { locale } = useAppContext();
@@ -76,7 +139,7 @@ export default function Form({title}) {
       })
     })
   }, [])
-  
+
   function encode(data) {
     return Object.keys(data)
       .map(
@@ -134,7 +197,7 @@ export default function Form({title}) {
 
   return (
     <Section id='form' className={'scroll-mt-24'}>
-      <H2 text={title} className={'formAnimation'}/>
+      <H2 text={title} className={'formAnimation'} />
       <form
         onSubmit={handleSubmit}
         name="ContactForm"
@@ -146,11 +209,7 @@ export default function Form({title}) {
         <input type="hidden" name="form-name" value="ContactForm" />
         <p className="hidden">
           <label>
-            {`${
-              locale === "en"
-                ? "Don't fill this out if you're human:"
-                : "Ne pas remplir si vous êtes humain."
-            }`}
+            {hiddenPlaceholder[locale]}
             <input
               name="bot-field"
               value={honey}
@@ -159,20 +218,46 @@ export default function Form({title}) {
           </label>
         </p>
 
-        <LayoutSplit>
+        <LayoutSplit right className={'min-h-[300px]'} >
           <div
-            className={`grid gap-1 xs:gap-6 grid-cols-3 w-full relative min-w-[30vw] lg:min-w-fit auto-rows-min font-normal ${
-              darkMode
+            data-lenis-prevent
+            className="formAnimation inline-flex flex-col w-full h-full "
+          >
+            <label
+              className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
+              htmlFor="message"
+            >{messageTitle[locale]}</label>
+            <textarea
+              required
+              data-lenis-prevent
+              className={`block bg-brown/50  font-raj font-medium
+                autofill:bg-brown/50 valid:scale-[0.99] 
+              outline-none -outline-offset-2 focus:outline-none focus:animate-outlinePulse
+              border-none border-transparent overscroll-contain 
+              placeholder:text-black/50 hover:border-black/40
+              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full h-full rounded-md`}
+              id="message"
+              type="text"
+              name="message"
+              placeholder={messagePlaceholder[locale]}
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+            ></textarea>
+          </div>
+          <div
+            className={`grid gap-1 xs:gap-6 grid-cols-3 w-full relative min-w-[30vw] lg:min-w-fit auto-rows-min font-normal ${darkMode
                 ? "text-primary placeholder:text-primary"
                 : "text-black placeholder:text-black"
-            }`}
+              }`}
           >
             <div className="grid col-start-1 col-span-3 min-[500px]:col-span-2 ">
               <div className="formAnimation inline-block relative col-start-1 col-span-1 pr-3">
                 <label
                   className="cursor-pointer font-semibold whitespace-nowrap inline-flex  mb-2 ml-1"
                   htmlFor="name"
-                >{`${locale === "en" ? "Name" : "Prénom"}`}</label>
+                >{nameTitle[locale]}</label>
                 <input
                   required
                   name="name"
@@ -184,9 +269,7 @@ export default function Form({title}) {
               focus:-outline-offset-2 focus:outline-black/20 p-2 w-full `}
                   id="name"
                   type="text"
-                  placeholder={`${
-                    locale === "en" ? "First name" : "Ou surnom"
-                  }`}
+                  placeholder={namePlaceholder[locale]}
                   value={name}
                   onChange={(e) => {
                     setName(e.target.value);
@@ -198,7 +281,7 @@ export default function Form({title}) {
                 <label
                   className=" cursor-pointer whitespace-nowrap font-semibold inline-flex mb-2 ml-1"
                   htmlFor="lastname"
-                >{`${locale === "en" ? "Last Name" : "Nom"}`}</label>
+                >{lastNameTitle[locale]}</label>
                 <input
                   required
                   name="lastname"
@@ -210,9 +293,7 @@ export default function Form({title}) {
               focus:-outline-offset-2 focus:outline-black/20 p-2 w-full `}
                   id="lastname"
                   type="text"
-                  placeholder={`${
-                    locale === "en" ? "Or family name" : "Nom de famille"
-                  }`}
+                  placeholder={lastNamePlaceholder[locale]}
                   value={lastName}
                   onChange={(e) => {
                     setLastName(e.target.value);
@@ -225,7 +306,7 @@ export default function Form({title}) {
               <label
                 className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
                 htmlFor="email"
-              >{`${locale === "en" ? "Email" : "Email"}`}</label>
+              >{emailTitle[locale]}</label>
               <input
                 required
                 name="email"
@@ -237,7 +318,7 @@ export default function Form({title}) {
               focus:-outline-offset-2 focus:outline-black/20 p-2 w-full `}
                 id="email"
                 type="email"
-                placeholder="example@ywdesign.co"
+                placeholder={emailPlaceholder[locale]}
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -250,7 +331,7 @@ export default function Form({title}) {
               <label
                 className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
                 htmlFor="subject"
-              >{`${locale === "en" ? "Subject" : "Sujet"}`}</label>
+              >{subjectTitle[locale]}</label>
               <input
                 name="subject"
                 className={`block bg-brown/50 font-raj font-medium
@@ -261,7 +342,7 @@ export default function Form({title}) {
               focus:-outline-offset-2 focus:outline-black/20 p-2 w-full `}
                 id="subject"
                 type="text"
-                placeholder="Question"
+                placeholder={subjectPlaceholder[locale]}
                 value={subject}
                 onChange={(e) => {
                   setSubject(e.target.value);
@@ -289,44 +370,14 @@ export default function Form({title}) {
                 {success ? (
                   <BsCheckLg className={`text-base`} />
                 ) : (
-                  `${locale === "en" ? "Send" : "Envoyer"}`
+                  `${sendButtonTitle[locale]}`
                 )}
               </button>
             </div>
           </div>
 
           {/* MESSAGE */}
-          <div
-            data-lenis-prevent
-            className="formAnimation inline-flex flex-col w-full h-full "
-          >
-            <label
-              className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
-              htmlFor="message"
-            >{`${locale === "en" ? "Message" : "Message"}`}</label>
-            <textarea
-              required
-              data-lenis-prevent
-              className={`block bg-brown/50  font-raj font-medium
-                autofill:bg-brown/50 valid:scale-[0.99] 
-              outline-none -outline-offset-2 focus:outline-none focus:animate-outlinePulse
-              border-none border-transparent overscroll-contain 
-              placeholder:text-black/50 hover:border-black/40
-              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full h-full rounded-md`}
-              id="message"
-              type="text"
-              name="message"
-              placeholder={`${
-                locale === "en"
-                  ? "To begin, just start typing. For example: \nHi Milo, \nI need a photographer for a project. \nCould we meet up to talk about it? \nKind regards"
-                  : "Pour commencer, il suffit de taper. Par exemple: \nBonjour Milo, \nje voudrais un nouveau logo et un nouveau site web pour ma boutique. \nPourrions-nous nous rencontrer pour en parler ? \nA bientôt !"
-              }`}
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-            ></textarea>
-          </div>
+
         </LayoutSplit>
       </form>
     </Section>

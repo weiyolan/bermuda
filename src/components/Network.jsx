@@ -9,6 +9,7 @@ import { gsap } from "gsap/dist/gsap";
 import { useEffect, useRef, useState } from "react";
 import useGsap from "@/utils/useGsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import FadeDiv from "@/atoms/FadeDiv";
 gsap.registerPlugin(ScrollTrigger);
 // let content = {};
 
@@ -38,44 +39,46 @@ export default function Network({ title, members }) {
   return (
     <Section id='network'>
       <H2 className="text-center networkAnimation" text={title[locale]} />
-      <div className="flex w-fit gap-24 px-12 py-4 max-w-[99vw] overflow-y-hidden overflow-x-scroll no-scrollbar">
-        {members?.map((member, i) => (
-          <Member
-            name={member.name}
-            key={member.name + i}
-            alt={member.alt[locale]}
-            func={member.func[locale]}
-            text={member.text[locale]}
-            url={member.img}
+      <FadeDiv type="leftRight" className='max-w-full' amount={10} >
+        <div className="flex w-fit gap-24 py-4 pl-[10%] pr-[20%] max-w-[99vw] overflow-y-hidden no-scrollbar">
+          {members?.map((member, i) => (
+            <Member
+              name={member.name}
+              key={member.name + i}
+              alt={member.alt[locale]}
+              func={member.func[locale]}
+              text={member.text[locale]}
+              url={member.img}
             // print={i===0}
-          />
-        ))}
-        {members?.map((member, i) => (
-          <Member
-            name={member.name}
-            key={member.name + i}
-            alt={member.alt[locale]}
-            func={member.func[locale]}
-            text={member.text[locale]}
-            url={member.img}
+            />
+          ))}
+          {members?.map((member, i) => (
+            <Member
+              name={member.name}
+              key={member.name + i}
+              alt={member.alt[locale]}
+              func={member.func[locale]}
+              text={member.text[locale]}
+              url={member.img}
             // print={i===0}
-          />
-        ))}
-        {members?.map((member, i) => (
-          <Member
-            name={member.name}
-            key={member.name + i}
-            alt={member.alt[locale]}
-            func={member.func[locale]}
-            text={member.text[locale]}
-            url={member.img}
+            />
+          ))}
+          {members?.map((member, i) => (
+            <Member
+              name={member.name}
+              key={member.name + i}
+              alt={member.alt[locale]}
+              func={member.func[locale]}
+              text={member.text[locale]}
+              url={member.img}
             // print={i===0}
-          />
-        ))}
-        {/* <Member url={undefined} name={"Robin"} func={"Founder"} />
+            />
+          ))}
+          {/* <Member url={undefined} name={"Robin"} func={"Founder"} />
         <Member url={undefined} name={"Robin"} func={"Founder"} />
         <Member url={undefined} name={"Robin"} func={"Founder"} /> */}
-      </div>
+        </div>
+      </FadeDiv>
     </Section>
   );
 }
@@ -102,7 +105,7 @@ function Member({ url, name, func, text, alt, print }) {
           ease: "elastic.out(1, 0.5)",
         });
       });
-      
+
     ctx.add(() => {
       gsap.to(myImgContainer.current, {
         duration: 0.5,

@@ -41,12 +41,14 @@ export default function CTA({ text }) {
 
   useEffect(() => {
     function makeHover(e) {
+      console.log(myRef?.current.getBoundingClientRect().top)
       if (e.y > myRef?.current.getBoundingClientRect().top) {
         !hovering && setHovering(true)
       } else {
         hovering && setHovering(false)
       }
     }
+
     window.addEventListener('mousemove', makeHover)
     return () => window.removeEventListener('mousemove', makeHover)
 
