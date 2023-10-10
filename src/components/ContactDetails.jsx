@@ -90,11 +90,8 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
                 text="Address"
                 className={"contactAnimation mb-0 mt-0"}
               />
-              <p className="contactAnimation">
-                {`${companyName}
-                ${address1}
-                ${address2}
-                ${country}`}
+              <p className="contactAnimation whitespace-pre">
+                {`${companyName}\n${address1}\n${address2}\n${country}`}
                 {/* {`miloweiler.com
                 Hof Savelkoul 40
                 2640 Mortsel
