@@ -77,7 +77,7 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
           id="contactSection"
           className="contact-parent relative flex w-full flex-col md:py-6 lg:py-12"
         >
-          <H2 text={title} left className={'contactAnimation'}/>
+          <H2 text={title} left className={'contactAnimation'} />
           {/* <H2 child='contact' mainTitle={contactDetails.title[locale]} SubTitle='' left /> */}
           <p className="contactAnimation text-justify font-raj text-sm font-medium first-letter:font-bel first-letter:text-3xl mobm:text-base max-w-prose sm:w-auto">
             {/* {contactDetails.text[locale]} */}
@@ -86,6 +86,7 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
 
           <div className="font-pop mt-4 flex flex-col gap-6 xs:flex-row">
             <div className="flex-1 flex-col">
+
               <AccentTitle
                 text="Address"
                 className={"contactAnimation mb-0 mt-0"}
