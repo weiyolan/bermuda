@@ -154,11 +154,26 @@ export default function Navigation({ links, cta }) {
         // gap: big ? 60 : 40,
         // fontSize: big ? "1.25rem" : "1.15rem",
         scale: hovering ? 1.05 : 1,
+
+
+
+
+
+
         duration: 0.5,
-        // ease: "elastic.out(1, 0.5)",
+        // ease: "elastic.out(1, 0.5)",f
         ease: "elastic.out(1, 0.5)",
         // delay: () => big ? 0 : 0,
+
+
+
+
       });
+
+
+
+
+
       gsap.to(myRef.current, {
         duration: 0.5,
         scale: hovering ? (clicking ? 0.95 : 1.05) : 1,
@@ -170,12 +185,11 @@ export default function Navigation({ links, cta }) {
   }, [hiding, big, hovering, clicking]);
 
 
-
   return (
     // <FadeDiv className='w-full relative'>
     // <FadeDiv style={{ transform: "translate3d(0, 0, 0)" }} className={`fixed w-full top-0 justify-center flex navBar  `} type={'leftRight'} amount={30}>
     <div
-      className={`navBar navBar shadow-lg fixed top-0 z-10 flex w-full justify-between text-base uppercase bg-brown p-4 px-8`}
+      className={`navBar navBar shadow-lg fixed top-0 z-10 px-8 flex w-full justify-between text-base uppercase bg-brown p-4 `}
     >
       <Link href="/"
         ref={myRef}

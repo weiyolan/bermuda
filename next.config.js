@@ -17,6 +17,9 @@ const nextConfig = withPWA({
   // For Faster Dev:
   // concurrentFeatures: true,
   // optimizeFonts: false,
+  experimental: {
+    appDir: true,
+  },
 
   images: {
     // dangerouslyAllowSVG: true,

@@ -14,7 +14,7 @@ gsap.registerPlugin(Observer);
 export default function NavigationMobile() {
   let { darkMode } = usePageContext();
   let [hiding, setHiding] = useState(true); //removed bar onLoad and then animate in.
-  const ctx = useRef(gsap.context(() => {}));
+  const ctx = useRef(gsap.context(() => { }));
 
   useEffect(() => {
     // setHiding(false)
@@ -91,9 +91,8 @@ export default function NavigationMobile() {
   return (
     <div className={`navBar fixed w-full h-0 top-0 `}>
       <div
-        className={`navBackground ${
-          darkMode ? "bg-[#FFEAD6c]/1" : "bg-[#FFEAD6]/20"
-        } backdrop-blur-sm rounded-bl-3xl w-screen h-screen top-0 translate-x-full -translate-y-full absolute `}
+        className={`navBackground ${darkMode ? "bg-[#FFEAD6c]/1" : "bg-[#FFEAD6]/20"
+          } backdrop-blur-sm rounded-bl-3xl w-screen h-screen top-0 translate-x-full -translate-y-full absolute `}
       />
       <div
         className={`navButtons flex flex-col w-[screen] h-[calc(100vh-50px)] relative items-end gap-5 mt-[50px] px-6 sm:px-4 py-2  `}
@@ -102,9 +101,8 @@ export default function NavigationMobile() {
         <Button text="Gallery" to="/gallery" />
         <Button text="Contact" to="/contact" />
         <div
-          className={`relative w-fit h-fit  text-3xl md:text-xl lg:text-2xl  text-center font-lora font-medium ${
-            darkMode ? "text-primary" : "text-darkPrimary font-semibold "
-          } `}
+          className={`relative w-fit h-fit  text-3xl md:text-xl lg:text-2xl  text-center font-lora font-medium ${darkMode ? "text-primary" : "text-darkPrimary font-semibold "
+            } `}
         >
           <LanguageToggle />
         </div>
@@ -120,7 +118,7 @@ function Button({ text, to }) {
   const { pathname } = useRouter();
   let [hover, setHover] = useState(false);
   let [selected, setSelected] = useState(false);
-  const ctx = useRef(gsap.context(() => {}));
+  const ctx = useRef(gsap.context(() => { }));
 
   useEffect(() => {
     // setLoaded(true)
@@ -158,9 +156,8 @@ function Button({ text, to }) {
       onMouseLeave={() => {
         setHover(false);
       }}
-      className={`navButton navButton${text}  relative opacity-0 visible text-3xl md:text-xl lg:text-2xl  text-center font-lora font-medium ${
-        darkMode ? "text-primary" : "text-darkPrimary font-semibold "
-      } `}
+      className={`navButton navButton${text}  relative opacity-0 visible text-3xl md:text-xl lg:text-2xl  text-center font-lora font-medium ${darkMode ? "text-primary" : "text-darkPrimary font-semibold "
+        } `}
       href={`${to}`}
       // onClick={() => handleClick(to)}
       // title={`Go to the ${text} page`}
@@ -168,9 +165,8 @@ function Button({ text, to }) {
       <div className={`w-fit ml-auto`}>
         {text}
         <Line
-          className={`mx-auto navLine${text} ${
-            darkMode ? "border-primary" : "border-darkPrimary"
-          } w-0`}
+          className={`mx-auto navLine${text} ${darkMode ? "border-primary" : "border-darkPrimary"
+            } w-0`}
         />
       </div>
     </Link>

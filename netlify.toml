@@ -1,8 +1,10 @@
-# example netlify.toml
 [build]
   command = "next build"
   functions = "netlify/functions"
   publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
@@ -19,5 +21,4 @@
   #  publish = "dist" # Folder with the static content for _redirect file
 
   ## more info on configuring this file: https://docs.netlify.com/configure-builds/file-based-configuration/
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+
