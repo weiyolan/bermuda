@@ -21,7 +21,7 @@ const ArrowLink = ({
   return (
     <Link
       tabIndex={tabIndex}
-      className={`group relative text-inherit fill-inherit decoration-inherit min-[460px]:whitespace-pre-wrap sm:whitespace-nowrap cursor-pointer ${
+      className={`block group relative text-inherit fill-inherit decoration-inherit min-[460px]:whitespace-pre-wrap sm:whitespace-nowrap cursor-pointer ${
         containerClass && containerClass
       }  `}
       href={to}

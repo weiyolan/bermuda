@@ -79,7 +79,7 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
         >
           <H2 text={title} left className={'contactAnimation'}/>
           {/* <H2 child='contact' mainTitle={contactDetails.title[locale]} SubTitle='' left /> */}
-          <p className="contactAnimation text-justify font-raj text-sm font-medium first-letter:font-bel first-letter:text-3xl mobm:text-base xs:w-1/2 sm:w-auto">
+          <p className="contactAnimation text-justify font-raj text-sm font-medium first-letter:font-bel first-letter:text-3xl mobm:text-base max-w-prose sm:w-auto">
             {/* {contactDetails.text[locale]} */}
             {text}
           </p>
