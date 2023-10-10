@@ -36,7 +36,7 @@ export default async function RootLayout({ children }) {
   const locale = currentLocale();
   const { links, cta } = await getNav();
   const { title, list1, list2, list3, list4 } = await getFooter();
-  // console.log(list4.items[0].url.en)
+  // console.log(list4.items[ 0].url.en)
   return (
     <html lang={locale}>
       <body

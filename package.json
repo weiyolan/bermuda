@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^4.40.2",
     "@portabletext/react": "^3.0.7",
     "@sanity/cli": "^3.16.7",
     "@sanity/client": "^6.4.12",
@@ -23,8 +22,8 @@
     "eslint-config-prettier": "^9.0.0",
     "gsap": "^3.11.5",
     "netlify": "^13.1.10",
-    "netlify-cli": "^16.5.1",
-    "next": "^13.5.4",
+    "netlify-cli": "^16.4.1",
+    "next": "^13.5.1",
     "next-i18n-router": "^3.2.0",
     "next-pwa": "^5.6.0",
     "next-sanity": "^5.5.3",
